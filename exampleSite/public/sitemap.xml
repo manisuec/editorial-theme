@@ -17,7 +17,7 @@
     <loc>http://localhost:1313/tags/http/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/http-headers-complete-guide-to-secure-optimize-your-apis/</loc>
+    <loc>http://localhost:1313/post/http-headers-guide/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/node.js/</loc>
@@ -26,22 +26,14 @@
     <loc>http://localhost:1313/tags/nodejs/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/security/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/express/</loc>
-    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/master-input-validation-sanitization-in-node.js/express.js/</loc>
-    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/validation/</loc>
-    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url>
 </urlset>

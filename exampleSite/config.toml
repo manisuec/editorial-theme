@@ -41,7 +41,7 @@ theme = "editorial-theme"
 [menu]
   [[menu.main]]
     name = "Articles"
-    url = "/posts/"
+    url = "/post/"
     weight = 1
   
   [[menu.main]]

@@ -23,18 +23,59 @@ I&rsquo;m Manish Prasad, a backend developer with over 10 years of experience bu
     <div class="container">
         <nav>
             <a href="http://localhost:1313/" class="logo">Tech Insights</a>
-            <div class="nav-menu">
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu" id="navMenu">
                 
-                <a href="/posts/" class="nav-item">Articles</a>
+                <a href="/post/" class="nav-item" onclick="closeMobileMenu()">Articles</a>
                 
-                <a href="/tags/" class="nav-item">Topics</a>
+                <a href="/tags/" class="nav-item" onclick="closeMobileMenu()">Topics</a>
                 
-                <a href="/about/" class="nav-item">About</a>
+                <a href="/about/" class="nav-item" onclick="closeMobileMenu()">About</a>
                 
             </div>
         </nav>
     </div>
 </header>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.remove('active');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    if (menu.classList.contains('active') && 
+        !menu.contains(event.target) && 
+        !toggle.contains(event.target)) {
+        closeMobileMenu();
+    }
+});
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeMobileMenu();
+    }
+});
+</script>
 
     
     
@@ -106,13 +147,13 @@ I&rsquo;m Manish Prasad, a backend developer with over 10 years of experience bu
                 <h3>Topics</h3>
                 <div class="footer-links">
                     
+                    <a href="http://localhost:1313/tags/api/" class="footer-link">Api</a>
+                    
+                    <a href="http://localhost:1313/tags/http/" class="footer-link">Http</a>
+                    
                     <a href="http://localhost:1313/tags/nodejs/" class="footer-link">Nodejs</a>
                     
                     <a href="http://localhost:1313/tags/security/" class="footer-link">Security</a>
-                    
-                    <a href="http://localhost:1313/tags/api/" class="footer-link">Api</a>
-                    
-                    <a href="http://localhost:1313/tags/express/" class="footer-link">Express</a>
                     
                 </div>
             </div>

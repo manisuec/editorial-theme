@@ -4,3 +4,4 @@ node_modules/
 exampleSite/resources/
 
 layouts/post/blog.code-workspace
+.DS_Store

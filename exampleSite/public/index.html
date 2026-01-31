@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.148.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.155.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Insights</title>
@@ -24,18 +24,59 @@
     <div class="container">
         <nav>
             <a href="http://localhost:1313/" class="logo">Tech Insights</a>
-            <div class="nav-menu">
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu" id="navMenu">
                 
-                <a href="/posts/" class="nav-item">Articles</a>
+                <a href="/post/" class="nav-item" onclick="closeMobileMenu()">Articles</a>
                 
-                <a href="/tags/" class="nav-item">Topics</a>
+                <a href="/tags/" class="nav-item" onclick="closeMobileMenu()">Topics</a>
                 
-                <a href="/about/" class="nav-item">About</a>
+                <a href="/about/" class="nav-item" onclick="closeMobileMenu()">About</a>
                 
             </div>
         </nav>
     </div>
 </header>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.remove('active');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    if (menu.classList.contains('active') && 
+        !menu.contains(event.target) && 
+        !toggle.contains(event.target)) {
+        closeMobileMenu();
+    }
+});
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeMobileMenu();
+    }
+});
+</script>
 
     
     
@@ -61,7 +102,7 @@
                 
             </div>
 
-            <a href="/posts" class="hero-cta">Start Reading</a>
+            <a href="/post" class="hero-cta">Start Reading</a>
         </div>
 
         <div class="hero-image">
@@ -97,7 +138,7 @@
                     </div>
                 </a>
                 
-                <a href="http://localhost:1313/http-headers-complete-guide-to-secure-optimize-your-apis/" class="article-card">
+                <a href="http://localhost:1313/post/http-headers-guide/" class="article-card">
                     
                     <span class="article-tag">Node.js</span>
                     
@@ -107,20 +148,6 @@
                     </p>
                     <div class="article-meta">
                         <span>Jan 20, 2026</span>
-                        <span class="read-time">1 min read</span>
-                    </div>
-                </a>
-                
-                <a href="http://localhost:1313/master-input-validation-sanitization-in-node.js/express.js/" class="article-card">
-                    
-                    <span class="article-tag">Node.js</span>
-                    
-                    <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
-                    <p class="article-excerpt">
-                        <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
-                    </p>
-                    <div class="article-meta">
-                        <span>Jan 19, 2026</span>
                         <span class="read-time">1 min read</span>
                     </div>
                 </a>
@@ -138,39 +165,27 @@
             
             
             
-            <a href="http://localhost:1313/tags/nodejs/" class="topic-card">
+            <a href="http://localhost:1313/tags/api/" class="topic-card">
                 <div class="topic-number">01</div>
+                <div class="topic-name">Api</div>
+            </a>
+            
+            
+            <a href="http://localhost:1313/tags/http/" class="topic-card">
+                <div class="topic-number">02</div>
+                <div class="topic-name">Http</div>
+            </a>
+            
+            
+            <a href="http://localhost:1313/tags/nodejs/" class="topic-card">
+                <div class="topic-number">03</div>
                 <div class="topic-name">Nodejs</div>
             </a>
             
             
             <a href="http://localhost:1313/tags/security/" class="topic-card">
-                <div class="topic-number">02</div>
-                <div class="topic-name">Security</div>
-            </a>
-            
-            
-            <a href="http://localhost:1313/tags/api/" class="topic-card">
-                <div class="topic-number">03</div>
-                <div class="topic-name">Api</div>
-            </a>
-            
-            
-            <a href="http://localhost:1313/tags/express/" class="topic-card">
                 <div class="topic-number">04</div>
-                <div class="topic-name">Express</div>
-            </a>
-            
-            
-            <a href="http://localhost:1313/tags/http/" class="topic-card">
-                <div class="topic-number">05</div>
-                <div class="topic-name">Http</div>
-            </a>
-            
-            
-            <a href="http://localhost:1313/tags/validation/" class="topic-card">
-                <div class="topic-number">06</div>
-                <div class="topic-name">Validation</div>
+                <div class="topic-name">Security</div>
             </a>
             
         </div>
@@ -206,13 +221,13 @@
                 <h3>Topics</h3>
                 <div class="footer-links">
                     
+                    <a href="http://localhost:1313/tags/api/" class="footer-link">Api</a>
+                    
+                    <a href="http://localhost:1313/tags/http/" class="footer-link">Http</a>
+                    
                     <a href="http://localhost:1313/tags/nodejs/" class="footer-link">Nodejs</a>
                     
                     <a href="http://localhost:1313/tags/security/" class="footer-link">Security</a>
-                    
-                    <a href="http://localhost:1313/tags/api/" class="footer-link">Api</a>
-                    
-                    <a href="http://localhost:1313/tags/express/" class="footer-link">Express</a>
                     
                 </div>
             </div>
