@@ -14,13 +14,17 @@
                     <span class="meta-value">{{ .value }}</span>
                 </div>
                 {{ end }}
+                <a href="{{ "post" | relURL }}" class="hero-cta">Start Reading</a>
             </div>
 
-            <a href="{{ "post" | relURL }}" class="hero-cta">Start Reading</a>
-            <form id="newsletter-form" class="newsletter-form" action="#" method="post">
-                <input name="email" class="newsletter-input" placeholder="your@email.com" required autocomplete="email"/>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
+            <div class="hero-actions-wrapper">
+                <p class="newsletter-label">Stay in the loop for insights on backend development</p>
+                <form id="newsletter-form" class="newsletter-form" action="#" method="post">
+                    <input name="email" class="newsletter-input" placeholder="your@email.com" required autocomplete="email"/>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+                
+            </div>
         </div>
 
         <div class="hero-image">
