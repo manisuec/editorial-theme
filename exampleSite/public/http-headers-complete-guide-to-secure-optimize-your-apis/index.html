@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Headers: Complete Guide to Secure &amp; Optimize Your APIs - Tech Insights</title>
+    <meta name="description" content="Running a production API without properly configured HTTP headers is leaving your front door unlocked. Browsers block modern features, CDNs refuse to cache your responses and attackers can exploit XSS, clickjacking and CSRF vulnerabilities in seconds.">
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+    <header>
+    <div class="container">
+        <nav>
+            <a href="http://localhost:1313/" class="logo">Tech Insights</a>
+            <div class="nav-menu">
+                
+                <a href="/posts/" class="nav-item">Articles</a>
+                
+                <a href="/tags/" class="nav-item">Topics</a>
+                
+                <a href="/about/" class="nav-item">About</a>
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+    
+    
+<article>
+    <div class="container">
+        <div class="post-header">
+            
+            <span class="article-tag">Node.js</span>
+            
+            <h1 class="post-title">HTTP Headers: Complete Guide to Secure &amp; Optimize Your APIs</h1>
+            <div class="post-meta-info">
+                <span>January 20, 2026</span>
+                <span>•</span>
+                <span>1 min read</span>
+                
+                <span>•</span>
+                <span>By Manish Prasad</span>
+                
+            </div>
+        </div>
+
+        <div class="post-content">
+            <p>Running a production API without properly configured HTTP headers is leaving your front door unlocked. Browsers block modern features, CDNs refuse to cache your responses and attackers can exploit XSS, clickjacking and CSRF vulnerabilities in seconds.</p>
+<h2 id="introduction">Introduction</h2>
+<p>In this comprehensive guide, we&rsquo;ll cover everything you need to know about HTTP headers for securing and optimizing your Node.js/Express APIs.</p>
+<h2 id="security-headers">Security Headers</h2>
+<h3 id="content-security-policy">Content Security Policy</h3>
+<p>Content Security Policy (CSP) is one of the most powerful security headers available:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">setHeader</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Content-Security-Policy&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="x-frame-options">X-Frame-Options</h3>
+<p>Prevent clickjacking attacks:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">setHeader</span>(<span style="color:#e6db74">&#39;X-Frame-Options&#39;</span>, <span style="color:#e6db74">&#39;DENY&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="performance-headers">Performance Headers</h2>
+<h3 id="cache-control">Cache Control</h3>
+<p>Optimize caching for better performance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">setHeader</span>(<span style="color:#e6db74">&#39;Cache-Control&#39;</span>, <span style="color:#e6db74">&#39;public, max-age=31536000&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="best-practices">Best Practices</h2>
+<ol>
+<li>Always use HTTPS in production</li>
+<li>Set security headers on all responses</li>
+<li>Test headers with security scanners</li>
+<li>Keep headers updated with latest recommendations</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Properly configured HTTP headers are essential for both security and performance. Take the time to implement them correctly in your applications.</p>
+        </div>
+
+        
+        <div class="post-tags">
+            
+            <a href="/tags/nodejs" class="post-tag">#nodejs</a>
+            
+            <a href="/tags/security" class="post-tag">#security</a>
+            
+            <a href="/tags/http" class="post-tag">#http</a>
+            
+            <a href="/tags/api" class="post-tag">#api</a>
+            
+        </div>
+        
+    </div>
+</article>
+
+
+<section class="featured">
+    <div class="container">
+        <div class="section-label">More Articles</div>
+        <div class="featured-content">
+            
+            <a href="http://localhost:1313/master-input-validation-sanitization-in-node.js/express.js/" class="article-card">
+                
+                <span class="article-tag">Node.js</span>
+                
+                <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt"><p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p></p>
+                <div class="article-meta">
+                    <span>Jan 19, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+            
+            
+        </div>
+    </div>
+</section>
+
+
+    
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <div class="footer-links">
+                    <a href="/about" class="footer-link">About Me</a>
+                    <a href="/contact" class="footer-link">Contact</a>
+                    <a href="/index.xml" class="footer-link">RSS Feed</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Topics</h3>
+                <div class="footer-links">
+                    
+                    <a href="http://localhost:1313/tags/nodejs/" class="footer-link">Nodejs</a>
+                    
+                    <a href="http://localhost:1313/tags/security/" class="footer-link">Security</a>
+                    
+                    <a href="http://localhost:1313/tags/api/" class="footer-link">Api</a>
+                    
+                    <a href="http://localhost:1313/tags/express/" class="footer-link">Express</a>
+                    
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    
+                    <a href="https://github.com/yourusername" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+                    
+                    
+                    <a href="https://twitter.com/yourusername" class="footer-link" target="_blank" rel="noopener">Twitter</a>
+                    
+                    
+                    <a href="https://linkedin.com/in/yourusername" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+                    
+                    
+                    <a href="https://medium.com/@yourusername" class="footer-link" target="_blank" rel="noopener">Medium</a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Manish Prasad. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

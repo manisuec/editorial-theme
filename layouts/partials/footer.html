@@ -1,0 +1,42 @@
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <div class="footer-links">
+                    <a href="{{ "about" | relURL }}" class="footer-link">About Me</a>
+                    <a href="{{ "contact" | relURL }}" class="footer-link">Contact</a>
+                    <a href="{{ "index.xml" | relURL }}" class="footer-link">RSS Feed</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Topics</h3>
+                <div class="footer-links">
+                    {{ range first 4 .Site.Taxonomies.tags.ByCount }}
+                    <a href="{{ .Page.Permalink }}" class="footer-link">{{ .Page.Title }}</a>
+                    {{ end }}
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    {{ with .Site.Params.social.github }}
+                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+                    {{ end }}
+                    {{ with .Site.Params.social.twitter }}
+                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">Twitter</a>
+                    {{ end }}
+                    {{ with .Site.Params.social.linkedin }}
+                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+                    {{ end }}
+                    {{ with .Site.Params.social.medium }}
+                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">Medium</a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © {{ now.Format "2006" }} {{ .Site.Params.author }}. All rights reserved.
+        </div>
+    </div>
+</footer>

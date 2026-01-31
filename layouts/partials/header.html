@@ -1,0 +1,53 @@
+<header>
+    <div class="container">
+        <nav>
+            <a href="{{ .Site.BaseURL }}" class="logo">{{ .Site.Title }}</a>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                {{ range .Site.Menus.main }}
+                <a href="{{ .URL | relURL }}" class="nav-item" onclick="closeMobileMenu()">{{ .Name }}</a>
+                {{ end }}
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.remove('active');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    if (menu.classList.contains('active') && 
+        !menu.contains(event.target) && 
+        !toggle.contains(event.target)) {
+        closeMobileMenu();
+    }
+});
+
+// Close menu on escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeMobileMenu();
+    }
+});
+</script>

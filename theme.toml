@@ -1,0 +1,12 @@
+name = "Editorial Magazine"
+license = "MIT"
+licenselink = "https://github.com/yourusername/editorial-theme/blob/main/LICENSE"
+description = "A bold editorial magazine-style Hugo theme with oversized typography and asymmetric layouts"
+homepage = "https://github.com/yourusername/editorial-theme"
+tags = ["blog", "editorial", "magazine", "minimal", "tech", "portfolio"]
+features = ["responsive", "typography", "editorial-design", "blog"]
+min_version = "0.120.0"
+
+[author]
+  name = "Tech Insights"
+  homepage = "https://techinsights.manisuec.com"

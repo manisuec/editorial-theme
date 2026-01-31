@@ -1,0 +1,70 @@
+{{ define "main" }}
+<article>
+    <div class="container">
+        <div class="post-header">
+            {{ with .Params.categories }}
+            <span class="article-tag">{{ index . 0 }}</span>
+            {{ end }}
+            <h1 class="post-title">{{ .Title }}</h1>
+            <div class="post-meta-info">
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+                <span>•</span>
+                <span>{{ .ReadingTime }} min read</span>
+                {{ with .Params.author }}
+                <span>•</span>
+                <span>By {{ . }}</span>
+                {{ end }}
+            </div>
+        </div>
+
+        <div class="post-content">
+            {{ .Content }}
+        </div>
+
+        {{ if .Params.tags }}
+        <div class="post-tags">
+            {{ range .Params.tags }}
+            <a href="{{ "tags" | relURL }}/{{ . | urlize }}" class="post-tag">#{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</article>
+
+{{ if or .NextInSection .PrevInSection }}
+<section class="featured">
+    <div class="container">
+        <div class="section-label">More Articles</div>
+        <div class="featured-content">
+            {{ with .PrevInSection }}
+            <a href="{{ .Permalink }}" class="article-card">
+                {{ with .Params.categories }}
+                <span class="article-tag">{{ index . 0 }}</span>
+                {{ end }}
+                <h3>{{ .Title }}</h3>
+                <p class="article-excerpt">{{ .Summary | truncate 150 }}</p>
+                <div class="article-meta">
+                    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                    <span class="read-time">{{ .ReadingTime }} min read</span>
+                </div>
+            </a>
+            {{ end }}
+            
+            {{ with .NextInSection }}
+            <a href="{{ .Permalink }}" class="article-card">
+                {{ with .Params.categories }}
+                <span class="article-tag">{{ index . 0 }}</span>
+                {{ end }}
+                <h3>{{ .Title }}</h3>
+                <p class="article-excerpt">{{ .Summary | truncate 150 }}</p>
+                <div class="article-meta">
+                    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                    <span class="read-time">{{ .ReadingTime }} min read</span>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
+{{ end }}

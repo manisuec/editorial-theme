@@ -1,0 +1,90 @@
+{{ define "main" }}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>
+                {{ with .Site.Params.heroTitle }}{{ . }}{{ else }}Deep<br>Tech<br>Wisdom{{ end }}
+            </h1>
+            <p class="subtitle">{{ .Site.Params.heroSubtitle }}</p>
+            
+            <div class="hero-meta">
+                {{ range .Site.Params.stats }}
+                <div class="meta-item">
+                    <span class="meta-label">{{ .label }}</span>
+                    <span class="meta-value">{{ .value }}</span>
+                </div>
+                {{ end }}
+            </div>
+
+            <a href="{{ "posts" | relURL }}" class="hero-cta">Start Reading</a>
+        </div>
+
+        <div class="hero-image">
+            <div class="hero-image-text">{ }</div>
+        </div>
+    </div>
+</section>
+
+<section class="featured">
+    <div class="container">
+        <div class="section-label">Latest Insights</div>
+        
+        <div class="featured-grid">
+            <div class="featured-sidebar">
+                <h2>{{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Params.featuredTitle | default "Node.js Security Done Right" }}{{ end }}</h2>
+                <p>
+                    {{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Params.featuredDescription | default "Production lessons from someone who's learned the hard way. Real vulnerabilities, real solutions." }}{{ end }}
+                </p>
+            </div>
+
+            <div class="featured-content">
+                {{ range first 3 (.Site.RegularPages.ByDate.Reverse) }}
+                <a href="{{ .Permalink }}" class="article-card">
+                    {{ with .Params.categories }}
+                    <span class="article-tag">{{ index . 0 }}</span>
+                    {{ end }}
+                    <h3>{{ .Title }}</h3>
+                    <p class="article-excerpt">
+                        {{ .Summary | truncate 150 }}
+                    </p>
+                    <div class="article-meta">
+                        <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                        <span class="read-time">{{ .ReadingTime }} min read</span>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="topics">
+    <div class="container">
+        <h2>Explore Topics</h2>
+        
+        <div class="topics-grid">
+            {{ $index := 0 }}
+            {{ range first 8 .Site.Taxonomies.tags.ByCount }}
+            {{ $index = add $index 1 }}
+            <a href="{{ .Page.Permalink }}" class="topic-card">
+                <div class="topic-number">{{ printf "%02d" $index }}</div>
+                <div class="topic-name">{{ .Page.Title }}</div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<section class="newsletter">
+    <div class="container">
+        <div class="newsletter-box">
+            <h2>Stay in the Loop</h2>
+            <p>Weekly insights on backend development</p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" class="newsletter-input" placeholder="your@email.com" required />
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+{{ end }}

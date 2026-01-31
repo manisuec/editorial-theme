@@ -1,0 +1,60 @@
+# Editorial Magazine Theme Configuration
+baseURL = "https://techinsights.manisuec.com/"
+languageCode = "en-us"
+title = "Tech Insights"
+theme = "editorial-theme"
+
+# Pagination
+[pagination]
+  pagerSize = 6
+
+# Permalinks
+[permalinks]
+  posts = "/:slug/"
+
+# Params
+[params]
+  description = "Deep Tech Wisdom for backend developers who care about craft"
+  author = "Manish Prasad"
+  
+  # Hero section
+  heroTitle = "Deep Tech Wisdom"
+  heroSubtitle = "For backend developers who care about craft"
+  
+  # Stats
+  [[params.stats]]
+    label = "Articles"
+    value = "40+"
+  
+  [[params.stats]]
+    label = "Experience"
+    value = "10+ yrs"
+
+  # Social links
+  [params.social]
+    github = "https://github.com/yourusername"
+    twitter = "https://twitter.com/yourusername"
+    linkedin = "https://linkedin.com/in/yourusername"
+    medium = "https://medium.com/@yourusername"
+
+# Menu
+[menu]
+  [[menu.main]]
+    name = "Articles"
+    url = "/posts/"
+    weight = 1
+  
+  [[menu.main]]
+    name = "Topics"
+    url = "/tags/"
+    weight = 2
+  
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+# Taxonomies
+[taxonomies]
+  tag = "tags"
+  category = "categories"

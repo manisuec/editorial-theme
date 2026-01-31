@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="container">
+    <section class="post-header">
+        <h1 class="post-title">All Topics</h1>
+        <p style="font-size: 1.25rem; color: #666; margin-top: 1rem;">
+            Explore {{ len .Data.Terms }} topics
+        </p>
+    </section>
+
+    <section class="topics">
+        <div class="topics-grid">
+            {{ $index := 0 }}
+            {{ range .Data.Terms.ByCount }}
+            {{ $index = add $index 1 }}
+            <a href="{{ .Page.Permalink }}" class="topic-card">
+                <div class="topic-number">{{ printf "%02d" $index }}</div>
+                <div class="topic-name">{{ .Page.Title }}</div>
+                <div style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                    {{ .Count }} {{ if eq .Count 1 }}article{{ else }}articles{{ end }}
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </section>
+</div>
+{{ end }}
