@@ -17,6 +17,10 @@
             </div>
 
             <a href="{{ "post" | relURL }}" class="hero-cta">Start Reading</a>
+            <form id="newsletter-form" class="newsletter-form" action="#" method="post">
+                <input name="email" class="newsletter-input" placeholder="your@email.com" required autocomplete="email"/>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
         </div>
 
         <div class="hero-image">
@@ -31,9 +35,9 @@
         
         <div class="featured-grid">
             <div class="featured-sidebar">
-                <h2>{{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Params.featuredTitle | default "Node.js Security Done Right" }}{{ end }}</h2>
+                <h2>{{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Site.Params.featuredTitle | default "Node.js Security Done Right" }}{{ end }}</h2>
                 <p>
-                    {{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Params.featuredDescription | default "Production lessons from someone who's learned the hard way. Real vulnerabilities, real solutions." }}{{ end }}
+                    {{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Site.Params.featuredDescription | default "Production lessons from someone who's learned the hard way. Real vulnerabilities, real solutions." }}{{ end }}
                 </p>
             </div>
 
@@ -71,19 +75,6 @@
                 <div class="topic-name">{{ .Page.Title }}</div>
             </a>
             {{ end }}
-        </div>
-    </div>
-</section>
-
-<section class="newsletter">
-    <div class="container">
-        <div class="newsletter-box">
-            <h2>Stay in the Loop</h2>
-            <p>Weekly insights on backend development</p>
-            <form class="newsletter-form" action="#" method="post">
-                <input type="email" class="newsletter-input" placeholder="your@email.com" required />
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
         </div>
     </div>
 </section>

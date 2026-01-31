@@ -56,8 +56,8 @@ nav {
 
 .logo {
     font-family: 'Fraunces', serif;
-    font-size: 2.5rem;
-    font-weight: 900;
+    font-size: 2rem;
+    font-weight: 600;
     font-style: italic;
     letter-spacing: -0.03em;
     text-decoration: none;
@@ -96,7 +96,7 @@ nav {
 
 /* Hero Section */
 .hero {
-    padding: 5rem 0;
+    padding: 3rem 0;
 }
 
 .hero > .container {
@@ -108,18 +108,18 @@ nav {
 
 .hero-content h1 {
     font-family: 'Fraunces', serif;
-    font-size: clamp(4rem, 10vw, 10rem);
+    font-size: clamp(4rem, 10vw, 6rem);
     line-height: 0.9;
     font-weight: 900;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     letter-spacing: -0.04em;
 }
 
 .hero-content .subtitle {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 300;
     color: #666;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-style: italic;
     font-family: 'Fraunces', serif;
 }
@@ -127,8 +127,8 @@ nav {
 .hero-meta {
     display: flex;
     gap: 3rem;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
+    margin-bottom: 1rem;
+    padding: 1.25rem 0;
     border-top: 2px solid #1A1A1A;
     border-bottom: 2px solid #1A1A1A;
 }
@@ -174,7 +174,7 @@ nav {
 
 .hero-image {
     position: relative;
-    height: 600px;
+    height: 500px;
     background: #1A1A1A;
     display: flex;
     align-items: center;
@@ -192,16 +192,17 @@ nav {
 
 /* Featured Article Section */
 .featured {
-    padding: 8rem 0;
-    border-top: 3px solid #1A1A1A;
+    padding: 2rem 0;
+    border-top: 25px solid #1A1A1A;
+    margin-top: -1rem;
 }
 
 .section-label {
-    font-size: 0.875rem;
+    font-size: 1.25rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 600;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: #666;
 }
 
@@ -290,8 +291,8 @@ nav {
 
 /* Topics Section */
 .topics {
-    padding: 8rem 0;
-    border-top: 3px solid #1A1A1A;
+    padding: 3rem 0;
+    border-top: 25px solid #1A1A1A;
 }
 
 .topics h2 {
@@ -343,12 +344,6 @@ nav {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-}
-
-/* Newsletter Section */
-.newsletter {
-    padding: 8rem 0;
-    border-top: 3px solid #1A1A1A;
 }
 
 .newsletter-box {

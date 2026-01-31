@@ -20,6 +20,10 @@ theme = "editorial-theme"
   # Hero section
   heroTitle = "Deep Tech Wisdom"
   heroSubtitle = "For backend developers who care about craft"
+
+  # Featured section
+  featuredTitle = "Deep Technical Insights"
+  featuredDescription = "Empowering developers with practical, solution oriented content that bridges the gap between complex technical concepts and real world implementation."
   
   # Stats
   [[params.stats]]
