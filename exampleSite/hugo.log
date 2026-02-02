@@ -1,0 +1,256 @@
+Watching for changes in /Users/lifeclicks/inception/editorial-theme/exampleSite/content/post, /Users/lifeclicks/inception/editorial-theme/exampleSite/themes/editorial-theme/archetypes, /Users/lifeclicks/inception/editorial-theme/exampleSite/themes/editorial-theme/layouts/{_default,partials}, /Users/lifeclicks/inception/editorial-theme/exampleSite/themes/editorial-theme/static/css
+Watching for config changes in /Users/lifeclicks/inception/editorial-theme/exampleSite/config.toml
+Start building sites … 
+hugo v0.155.1+extended+withdeploy darwin/arm64 BuildDate=2026-01-30T10:10:48Z VendorInfo=Homebrew
+
+
+                  │ EN 
+──────────────────┼────
+ Pages            │ 26 
+ Paginator pages  │  0 
+ Non-page files   │  0 
+ Static files     │  1 
+ Processed images │  0 
+ Aliases          │  1 
+ Cleaned          │  0 
+
+Built in 7 ms
+Environment: "development"
+Serving pages from disk
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1) 
+Press Ctrl+C to stop
+
+Change detected, rebuilding site (#1).
+2026-02-02 11:20:23.905 +0530
+Template changed /index.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#2).
+2026-02-02 11:25:53.904 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 5 ms
+
+Change detected, rebuilding site (#3).
+2026-02-02 11:26:14.904 +0530
+Template changed /index.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#4).
+2026-02-02 11:27:46.906 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 18 ms
+
+Change detected, rebuilding site (#5).
+2026-02-02 11:28:00.904 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 13 ms
+
+Change detected, rebuilding site (#6).
+2026-02-02 11:29:55.903 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#7).
+2026-02-02 11:30:07.902 +0530
+Template changed /index.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change of Static files detected, rebuilding site (#8).
+2026-02-02 11:30:21.902 +0530
+Syncing /css/style.css to /
+
+Change detected, rebuilding site (#9).
+2026-02-02 11:59:26.857 +0530
+Source changed /_index.md
+ERROR Rebuild failed: assemble: failed to create page from pageMetaSource : "/Users/lifeclicks/inception/editorial-theme/exampleSite/content/_index.md:8:3": [7:3] non-map value is specified
+   4 |     - title: "Node.js/Express"
+   5 |     - description: ""
+   6 |     - thumbnail: "images/nodejs.png"
+>  7 |   - Node.js/Express
+         ^
+   8 |   - Mongodb
+   9 |   - Javascript/Reactjs
+  10 |   - General
+  11 |
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 5 ms
+
+Change detected, rebuilding site (#10).
+2026-02-02 11:59:38.355 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 11 ms
+
+Change detected, rebuilding site (#11).
+2026-02-02 12:01:23.853 +0530
+Source changed /_index.md
+ERROR Rebuild failed: render: [en v1.0.0 guest] failed to render pages: render of "/Users/lifeclicks/inception/editorial-theme/exampleSite/content/_index.md" failed: "/Users/lifeclicks/inception/editorial-theme/exampleSite/themes/editorial-theme/layouts/index.html:79:28": execute of template failed at <urlize .>: error calling urlize: unable to cast []interface {}{map[string]interface {}{"description":"", "thumbnail":"images/nodejs.png", "title":"Node.js/Express"}, map[string]interface {}{"description":"", "thumbnail":"images/mongodb.png", "title":"Mongodb"}, map[string]interface {}{"description":"", "thumbnail":"images/javascript.png", "title":"Javascript/Reactjs"}, map[string]interface {}{"description":"", "thumbnail":"images/general.png", "title":"General"}} of type []interface {} to string
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#12).
+2026-02-02 12:03:08.352 +0530
+Template changed /index.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 5 ms
+
+Change detected, rebuilding site (#13).
+2026-02-02 12:04:14.352 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#14).
+2026-02-02 12:05:10.852 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 15 ms
+
+Change detected, rebuilding site (#15).
+2026-02-02 12:05:14.853 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 15 ms
+
+Change detected, rebuilding site (#16).
+2026-02-02 12:06:28.350 +0530
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 5 ms
+
+Change detected, rebuilding site (#17).
+2026-02-02 12:08:08.350 +0530
+Template changed /index.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#18).
+2026-02-02 13:09:12.689 +0530
+Source changed /about.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 11 ms
+
+Change detected, rebuilding site (#19).
+2026-02-02 13:09:41.178 +0530
+Source changed /post/http-headers-guide.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 24 ms
+
+Change detected, rebuilding site (#20).
+2026-02-02 13:09:49.178 +0530
+Source changed /post/http-headers-guide.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 18 ms
+
+Change detected, rebuilding site (#21).
+2026-02-02 13:10:50.677 +0530
+Source changed /post/http-headers-guide.md
+ERROR Rebuild failed: assemble: failed to create page from pageMetaSource /post/http-headers-guide: "/Users/lifeclicks/inception/editorial-theme/exampleSite/content/post/http-headers-guide.md:8:1": [7:1] non-map value is specified
+   4 | categories: ["Node.js"]
+   5 | tags: ["nodejs", "security", "http", "api"]
+   6 | author: "Manish Prasad"
+>  7 | url:"nodejs/http-headers-guide/"
+       ^
+   8 | featuredTitle: "Node.js Security Done Right"
+   9 | featuredDescription: "Production lessons from someone who's learned the hard way. Real vulnerabilities, real solutions."
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#22).
+2026-02-02 13:10:58.177 +0530
+Source changed /post/http-headers-guide.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 23 ms
+
+Change detected, rebuilding site (#23).
+2026-02-02 13:11:33.177 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 21 ms
+
+Change detected, rebuilding site (#24).
+2026-02-02 13:11:41.676 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 21 ms
+
+Change detected, rebuilding site (#25).
+2026-02-02 13:11:44.177 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 15 ms
+
+Change of config file detected, rebuilding site (#26).
+2026-02-02 13:13:07.674 +0530
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Rebuilt in 42 ms
+
+Change detected, rebuilding site (#27).
+2026-02-02 13:17:00.669 +0530
+Template changed /_default/single.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#28).
+2026-02-02 13:17:16.668 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 5 ms
+
+Change detected, rebuilding site (#29).
+2026-02-02 13:17:25.169 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 17 ms
+
+Change detected, rebuilding site (#30).
+2026-02-02 13:17:29.169 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 13 ms
+
+Change detected, rebuilding site (#31).
+2026-02-02 13:17:32.169 +0530
+Source changed /post/input-validation.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 17 ms
+
+Change detected, rebuilding site (#32).
+2026-02-02 15:11:52.900 +0530
+Template changed /_default/single.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change of Static files detected, rebuilding site (#33).
+2026-02-02 15:12:01.899 +0530
+Syncing /css/style.css to /
+
+Change detected, rebuilding site (#34).
+2026-02-02 15:25:22.913 +0530
+Template changed /index.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change of Static files detected, rebuilding site (#35).
+2026-02-02 15:26:38.414 +0530
+Syncing /css/style.css to /
+
+Change of Static files detected, rebuilding site (#36).
+2026-02-02 15:45:17.571 +0530
+Syncing /css/style.css to /
+
+Change of Static files detected, rebuilding site (#37).
+2026-02-02 15:47:34.574 +0530
+Syncing /css/style.css to /
+
+Change of Static files detected, rebuilding site (#38).
+2026-02-02 15:47:57.573 +0530
+Syncing /css/style.css to /

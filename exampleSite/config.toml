@@ -3,6 +3,7 @@ baseURL = "https://techinsights.manisuec.com/"
 languageCode = "en-us"
 title = "Tech Insights"
 theme = "editorial-theme"
+author = "Manish Prasad"
 
 # Pagination
 [pagination]

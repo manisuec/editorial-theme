@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Tech Insights</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://techinsights.manisuec.com/tags/</link>
     <description>Recent content in Tags on Tech Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 20 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://techinsights.manisuec.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Api</title>
-      <link>http://localhost:1313/tags/api/</link>
+      <link>https://techinsights.manisuec.com/tags/api/</link>
       <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/api/</guid>
+      <guid>https://techinsights.manisuec.com/tags/api/</guid>
       <description></description>
     </item>
     <item>
       <title>Http</title>
-      <link>http://localhost:1313/tags/http/</link>
+      <link>https://techinsights.manisuec.com/tags/http/</link>
       <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/http/</guid>
+      <guid>https://techinsights.manisuec.com/tags/http/</guid>
       <description></description>
     </item>
     <item>
       <title>Nodejs</title>
-      <link>http://localhost:1313/tags/nodejs/</link>
+      <link>https://techinsights.manisuec.com/tags/nodejs/</link>
       <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/nodejs/</guid>
+      <guid>https://techinsights.manisuec.com/tags/nodejs/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>http://localhost:1313/tags/security/</link>
+      <link>https://techinsights.manisuec.com/tags/security/</link>
       <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/security/</guid>
+      <guid>https://techinsights.manisuec.com/tags/security/</guid>
       <description></description>
     </item>
     <item>
       <title>Express</title>
-      <link>http://localhost:1313/tags/express/</link>
+      <link>https://techinsights.manisuec.com/tags/express/</link>
       <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/express/</guid>
+      <guid>https://techinsights.manisuec.com/tags/express/</guid>
       <description></description>
     </item>
     <item>
       <title>Validation</title>
-      <link>http://localhost:1313/tags/validation/</link>
+      <link>https://techinsights.manisuec.com/tags/validation/</link>
       <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/validation/</guid>
+      <guid>https://techinsights.manisuec.com/tags/validation/</guid>
       <description></description>
     </item>
   </channel>

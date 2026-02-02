@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/about/</loc>
-    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-01-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/api/</loc>
+    <loc>https://techinsights.manisuec.com/tags/api/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://techinsights.manisuec.com/categories/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/http/</loc>
+    <loc>https://techinsights.manisuec.com/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/http-headers-guide/</loc>
+    <loc>https://techinsights.manisuec.com/tags/http/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/node.js/</loc>
+    <loc>https://techinsights.manisuec.com/nodejs/http-headers-guide/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/nodejs/</loc>
+    <loc>https://techinsights.manisuec.com/categories/node.js/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>https://techinsights.manisuec.com/tags/nodejs/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/security/</loc>
+    <loc>https://techinsights.manisuec.com/post/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://techinsights.manisuec.com/tags/security/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/express/</loc>
+    <loc>https://techinsights.manisuec.com/tags/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://techinsights.manisuec.com/tags/express/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/input-validation/</loc>
+    <loc>https://techinsights.manisuec.com/nodejs/input-validation/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/validation/</loc>
+    <loc>https://techinsights.manisuec.com/tags/validation/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://techinsights.manisuec.com/about/</loc>
+    <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url>
 </urlset>
