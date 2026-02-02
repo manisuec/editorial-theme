@@ -216,6 +216,43 @@ nav {
     color: #666;
 }
 
+/* Navigation Arrows */
+.nav-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    color: #E63946;
+}
+
+.nav-arrow svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.nav-arrow-prev {
+    flex-direction: row;
+}
+
+.nav-arrow-next {
+    flex-direction: row-reverse;
+}
+
+.article-card-prev:hover {
+    transform: translateX(-10px);
+    box-shadow: 10px 10px 0 #E63946;
+}
+
+.article-card-next:hover {
+    transform: translateX(10px);
+    box-shadow: -10px 10px 0 #E63946;
+}
+
 .featured-grid {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
@@ -538,8 +575,36 @@ footer {
 
 /* Single Post Styles */
 .post-header {
-    padding: 4rem 0;
+    padding: 3rem 0;
     border-bottom: 3px solid #1A1A1A;
+}
+
+.post-header-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.share-icons-header {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.share-icons-header .share-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: #F5F1E8;
+}
+
+.share-icons-header .share-icon svg {
+    width: 20px;
+    height: 20px;
 }
 
 .post-title {
@@ -559,8 +624,8 @@ footer {
 }
 
 .post-content {
-    max-width: 800px;
-    margin: 4rem auto;
+    max-width: 900px;
+    margin: 1rem 0;
     font-size: 1.125rem;
     line-height: 1.8;
 }
@@ -569,7 +634,7 @@ footer {
     font-family: 'Fraunces', serif;
     font-size: 2.5rem;
     font-weight: 700;
-    margin: 3rem 0 1.5rem;
+    margin: 1.5rem 0 1.5rem;
     letter-spacing: -0.02em;
 }
 
@@ -577,16 +642,16 @@ footer {
     font-family: 'Fraunces', serif;
     font-size: 1.75rem;
     font-weight: 700;
-    margin: 2rem 0 1rem;
+    margin: 1.5rem 0 1rem;
 }
 
 .post-content p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .post-content ul,
 .post-content ol {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     padding-left: 2rem;
 }
 
@@ -620,8 +685,8 @@ footer {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin: 3rem 0;
-    padding: 3rem 0;
+    margin: 0;
+    padding: 2rem 0 0;
     border-top: 3px solid #1A1A1A;
 }
 
@@ -642,7 +707,7 @@ footer {
 
 /* Social Share */
 .social-share {
-    margin: 2rem 0;
+    margin: 1rem 0;
     padding: 2rem 0;
     border-top: 1px solid #ddd;
     display: flex;
@@ -669,12 +734,59 @@ footer {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    background: #f5f5f5;
+    background: #F5F1E8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.share-icon:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.share-icon:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.post-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #ddd;
+}
+
+.support-author {
+    padding: 1.25rem;
+    border-radius: 10px;
+    background: #fff7e6;
+    text-align: center;
+    flex: 1;
+}
+
+.support-text {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.buymeacoffee-btn img {
+    max-height: 48px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buymeacoffee-btn:hover img {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .share-icon svg {
     width: 20px;
     height: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .share-x {
@@ -684,6 +796,7 @@ footer {
 .share-x:hover {
     background: #000;
     color: #fff;
+    border-color: rgba(0, 0, 0, 0.3);
 }
 
 .share-linkedin {
@@ -693,6 +806,7 @@ footer {
 .share-linkedin:hover {
     background: #0077b5;
     color: #fff;
+    border-color: rgba(0, 119, 181, 0.3);
 }
 
 .share-whatsapp {
@@ -702,6 +816,7 @@ footer {
 .share-whatsapp:hover {
     background: #128C7E;
     color: #fff;
+    border-color: rgba(18, 140, 126, 0.3);
 }
 
 .share-pinterest {
@@ -711,6 +826,7 @@ footer {
 .share-pinterest:hover {
     background: #e60023;
     color: #fff;
+    border-color: rgba(230, 0, 35, 0.3);
 }
 
 /* Mobile Menu Toggle */
@@ -1205,5 +1321,15 @@ footer {
 
     .post-content code {
         font-size: 0.85rem;
+    }
+
+    .post-footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+    }
+
+    .support-author {
+        max-width: 100%;
     }
 }

@@ -1,11 +1,11 @@
 ---
-title: "This Input Validation & Sanitization in Node.js/Express.js"
-date: 2026-01-18
+title: "Master Input Validation & Sanitization in Node.js/Express.js"
+date: 2026-01-19
 draft: false
 categories: ["Node.js"]
 tags: ["nodejs", "security", "validation", "express"]
 author: "Manish"
-url: "nodejs/this-input-validation/"
+url: "nodejs/input-validation/"
 ---
 
 Picture this: You've just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard shows all green. Then, one morning, you wake up to alerts; your database is draining. Someone found a tiny form field you "sort of" validated and injected malicious SQL. Your user table? Gone. Nightmare fuel, right?

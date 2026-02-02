@@ -1,11 +1,11 @@
 ---
 title: "HTTP Headers: Complete Guide to Secure & Optimize Your APIs"
-date: 2026-01-21
+date: 2026-01-20
 draft: false
 categories: ["Node.js"]
 tags: ["nodejs", "security", "http", "api"]
 author: "Manish Prasad"
-url: "nodejs/this-http-headers-guide/"
+url: "nodejs/http-headers-guide/"
 featuredTitle: "Node.js Security Done Right"
 featuredDescription: "Production lessons from someone who's learned the hard way. Real vulnerabilities, real solutions."
 ---

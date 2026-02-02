@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Express on Tech Insights</title>
-    <link>https://techinsights.manisuec.com/tags/express/</link>
+    <link>http://localhost:1313/tags/express/</link>
     <description>Recent content in Express on Tech Insights</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://techinsights.manisuec.com/tags/express/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/express/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Master Input Validation &amp; Sanitization in Node.js/Express.js</title>
-      <link>https://techinsights.manisuec.com/nodejs/input-validation/</link>
+      <link>http://localhost:1313/nodejs/input-validation/</link>
       <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://techinsights.manisuec.com/nodejs/input-validation/</guid>
+      <guid>http://localhost:1313/nodejs/input-validation/</guid>
+      <description>&lt;p&gt;Picture this: You&amp;rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard shows all green. Then, one morning, you wake up to alerts; your database is draining. Someone found a tiny form field you &amp;ldquo;sort of&amp;rdquo; validated and injected malicious SQL. Your user table? Gone. Nightmare fuel, right?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>This Input Validation &amp; Sanitization in Node.js/Express.js</title>
+      <link>http://localhost:1313/nodejs/this-input-validation/</link>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nodejs/this-input-validation/</guid>
       <description>&lt;p&gt;Picture this: You&amp;rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard shows all green. Then, one morning, you wake up to alerts; your database is draining. Someone found a tiny form field you &amp;ldquo;sort of&amp;rdquo; validated and injected malicious SQL. Your user table? Gone. Nightmare fuel, right?&lt;/p&gt;</description>
     </item>
   </channel>

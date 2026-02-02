@@ -254,3 +254,54 @@ Syncing /css/style.css to /
 Change of Static files detected, rebuilding site (#38).
 2026-02-02 15:47:57.573 +0530
 Syncing /css/style.css to /
+
+Change detected, rebuilding site (#39).
+2026-02-02 15:51:37.045 +0530
+Template changed /_default/single.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#40).
+2026-02-02 15:51:54.044 +0530
+Template changed /_default/single.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 5 ms
+
+Change of Static files detected, rebuilding site (#41).
+2026-02-02 15:52:08.544 +0530
+Syncing /css/style.css to /
+
+Change detected, rebuilding site (#42).
+2026-02-02 15:54:59.045 +0530
+Template changed /_default/single.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#43).
+2026-02-02 15:57:36.047 +0530
+Template added /partials/share-icons.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#44).
+2026-02-02 15:57:56.047 +0530
+Template changed /_default/single.html
+ERROR Rebuild failed: render: [en v1.0.0 guest] failed to render pages: render of "/Users/lifeclicks/inception/editorial-theme/exampleSite/content/about.md" failed: "/Users/lifeclicks/inception/editorial-theme/exampleSite/themes/editorial-theme/layouts/_default/single.html:10:23": execute of template failed at <partial "share-icons.html" .>: error calling partial: "/Users/lifeclicks/inception/editorial-theme/exampleSite/themes/editorial-theme/layouts/partials/share-icons.html:1:11": execute of template failed at <.url>: can’t evaluate field url in type page.Page
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change of Static files detected, rebuilding site (#45).
+2026-02-02 15:58:20.547 +0530
+Syncing /css/style.css to /
+
+Change of Static files detected, rebuilding site (#46).
+2026-02-02 15:58:30.547 +0530
+Syncing /css/style.css to /
+
+Change detected, rebuilding site (#47).
+2026-02-02 16:02:06.550 +0530
+Template changed /_default/single.html
+Template changed /partials/share-icons.html
+ERROR Rebuild failed: logged 1 error(s)
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
