@@ -28,18 +28,8 @@
             </a>
             {{ end }}
         </div>
-
-        {{ if gt .Paginator.TotalPages 1 }}
-        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 4rem;">
-            {{ if .Paginator.HasPrev }}
-            <a href="{{ .Paginator.Prev.URL }}" class="hero-cta">← Previous</a>
-            {{ end }}
-            
-            {{ if .Paginator.HasNext }}
-            <a href="{{ .Paginator.Next.URL }}" class="hero-cta">Next →</a>
-            {{ end }}
-        </div>
-        {{ end }}
     </section>
+
+    {{ partial "pagination.html" . }}
 </div>
 {{ end }}

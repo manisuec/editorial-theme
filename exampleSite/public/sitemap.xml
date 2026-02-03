@@ -2,52 +2,136 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/api/</loc>
+    <loc>//localhost:1313/tags/api/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>//localhost:1313/categories/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>//localhost:1313/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/http/</loc>
+    <loc>//localhost:1313/tags/http/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nodejs/this-http-headers-guide/</loc>
+    <loc>//localhost:1313/nodejs/this-http-headers-guide/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/node.js/</loc>
+    <loc>//localhost:1313/nodejs/this-http-headers-guide/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/nodejs/</loc>
+    <loc>//localhost:1313/categories/nodejs/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>//localhost:1313/tags/nodejs/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/security/</loc>
+    <loc>//localhost:1313/post/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>//localhost:1313/tags/security/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nodejs/http-headers-guide/</loc>
+    <loc>//localhost:1313/tags/</loc>
+    <lastmod>2026-01-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
     <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/express/</loc>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mongodb/http-headers-guide/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/categories/mongodb/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/mongodb/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/express/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nodejs/input-validation/</loc>
+    <loc>//localhost:1313/categories/general/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/validation/</loc>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nodejs/this-input-validation/</loc>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/javascript/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/categories/javascript/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/input-validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/validation/</loc>
+    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nodejs/this-input-validation/</loc>
     <lastmod>2026-01-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>//localhost:1313/nodejs/this-input-validation/</loc>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/about/</loc>
     <lastmod>2026-01-02T00:00:00+00:00</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,36 @@
+{{ if gt .Paginator.TotalPages 1 }}
+<nav class="pagination" aria-label="Page navigation">
+    <div class="pagination-info">
+        <span class="pagination-page">Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
+    </div>
+    <div class="pagination-links">
+        {{ if .Paginator.HasPrev }}
+        <a href="{{ .Paginator.Prev.URL }}" class="pagination-link pagination-prev" aria-label="Previous page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Previous
+        </a>
+        {{ end }}
+        
+        {{ range .Paginator.Pagers }}
+        {{ if eq . $.Paginator }}
+        <span class="pagination-link pagination-current" aria-current="page">{{ .PageNumber }}</span>
+        {{ else if or (eq . $.Paginator.First) (eq . $.Paginator.Last) (and (ge . $.Paginator.Prev) (le . $.Paginator.Next)) }}
+        <a href="{{ .URL }}" class="pagination-link">{{ .PageNumber }}</a>
+        {{ else if or (and (eq . $.Paginator.Next) (lt . $.Paginator.Last)) (and (eq . $.Paginator.Prev) (gt . $.Paginator.First)) }}
+        <span class="pagination-ellipsis">...</span>
+        {{ end }}
+        {{ end }}
+        
+        {{ if .Paginator.HasNext }}
+        <a href="{{ .Paginator.Next.URL }}" class="pagination-link pagination-next" aria-label="Next page">
+            Next
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </a>
+        {{ end }}
+    </div>
+</nav>
+{{ end }}

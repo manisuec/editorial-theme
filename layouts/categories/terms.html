@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="container">
+    <section class="post-header">
+        <h1 class="post-title">Categories</h1>
+        <p class="hero-subtitle" style="margin-top: 1rem;">
+            Explore {{ len .Site.Home.Params.categories.items }} categories
+        </p>
+    </section>
+
+    <section class="topics">
+        <div class="topics-grid">
+            {{ $taxonomy := .Site.Taxonomies.categories }}
+            {{ range .Site.Home.Params.categories.items }}
+            {{ $item := . }}
+            {{ $url := .url | strings.TrimPrefix "/" }}
+            <a href="{{ "/categories/" | relURL }}{{ $url }}" class="topic-card">
+                {{ with .thumbnail }}
+                <img src="{{ . | relURL }}" alt="{{ $item.title }}" class="topic-thumbnail">
+                {{ end }}
+                <div class="topic-name">{{ .title }}</div>
+                {{ if (index $taxonomy $url) }}
+                {{ $count := (index $taxonomy $url).Count }}
+                <div class="article-count" style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                    {{ $count }} {{ if eq $count 1 }}article{{ else }}articles{{ end }}
+                </div>
+                {{ end }}
+            </a>
+            {{ end }}
+        </div>
+    </section>
+</div>
+{{ end }}

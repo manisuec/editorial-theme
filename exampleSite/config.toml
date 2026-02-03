@@ -1,5 +1,5 @@
 # Editorial Magazine Theme Configuration
-baseURL = "https://techinsights.manisuec.com/"
+baseURL = ""
 languageCode = "en-us"
 title = "Tech Insights"
 theme = "editorial-theme"
@@ -29,18 +29,24 @@ author = "Manish Prasad"
   # Stats
   [[params.stats]]
     label = "Articles"
-    value = "40+"
+    value = "100+"
   
   [[params.stats]]
     label = "Experience"
-    value = "10+ yrs"
+    value = "18+ yrs"
 
   # Social links
   [params.social]
-    github = "https://github.com/yourusername"
-    twitter = "https://twitter.com/yourusername"
-    linkedin = "https://linkedin.com/in/yourusername"
-    medium = "https://medium.com/@yourusername"
+    github = "https://github.com/manisuec"
+    twitter = "https://twitter.com/lifeclicks25"
+    linkedin = "https://linkedin.com/in/manish-prasad-64448614/"
+    medium = "https://medium.com/@manisuec"
+
+  # Support Author / Buy Me a Coffee
+  [params.supportAuthor]
+    text = "Enjoyed the story? Support more contents like this by buying me a coffee ☕"
+    url = "https://www.buymeacoffee.com/manisuec"
+    imageUrl = "https://res.cloudinary.com/dkiurfsjm/image/upload/v1770031915/buymeacoffee_amggrj.png"
 
 # Menu
 [menu]
@@ -48,12 +54,12 @@ author = "Manish Prasad"
     name = "Articles"
     url = "/post/"
     weight = 1
-  
+
   [[menu.main]]
     name = "Topics"
-    url = "/tags/"
+    url = "/categories/"
     weight = 2
-  
+
   [[menu.main]]
     name = "About"
     url = "/about/"

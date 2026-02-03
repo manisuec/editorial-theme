@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation - Tech Insights</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+    <header>
+    <div class="container">
+        <nav>
+            <a href="//localhost:1313/" class="logo">Tech Insights</a>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                
+                <a href="/post/" class="nav-item" onclick="closeMobileMenu()">Articles</a>
+                
+                <a href="/categories/" class="nav-item" onclick="closeMobileMenu()">Topics</a>
+                
+                <a href="/about/" class="nav-item" onclick="closeMobileMenu()">About</a>
+                
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    menu.classList.remove('active');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('navMenu');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    if (menu.classList.contains('active') && 
+        !menu.contains(event.target) && 
+        !toggle.contains(event.target)) {
+        closeMobileMenu();
+    }
+});
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeMobileMenu();
+    }
+});
+</script>
+
+    
+    
+
+<div class="container">
+    <section class="post-header">
+        <h1 class="post-title">Validation</h1>
+        <p class="hero-subtitle" style="margin-top: 1rem;">
+            18 articles
+        </p>
+    </section>
+
+    <section class="featured">
+        <div class="featured-content">
+            
+            <a href="//localhost:1313/nodejs/input-validation/" class="article-card">
+                
+                <span class="article-tag">general</span>
+                
+                <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt">
+                    <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
+                </p>
+                <div class="article-meta">
+                    <span>Jan 19, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+            <a href="//localhost:1313/nodejs/input-validation/" class="article-card">
+                
+                <span class="article-tag">general</span>
+                
+                <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt">
+                    <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
+                </p>
+                <div class="article-meta">
+                    <span>Jan 19, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+            <a href="//localhost:1313/nodejs/input-validation/" class="article-card">
+                
+                <span class="article-tag">general</span>
+                
+                <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt">
+                    <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
+                </p>
+                <div class="article-meta">
+                    <span>Jan 19, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+            <a href="//localhost:1313/nodejs/input-validation/" class="article-card">
+                
+                <span class="article-tag">general</span>
+                
+                <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt">
+                    <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
+                </p>
+                <div class="article-meta">
+                    <span>Jan 19, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+            <a href="//localhost:1313/nodejs/this-input-validation/" class="article-card">
+                
+                <span class="article-tag">nodejs</span>
+                
+                <h3>This Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt">
+                    <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
+                </p>
+                <div class="article-meta">
+                    <span>Jan 18, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+            <a href="//localhost:1313/nodejs/this-input-validation/" class="article-card">
+                
+                <span class="article-tag">nodejs</span>
+                
+                <h3>This Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <p class="article-excerpt">
+                    <p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p>
+                </p>
+                <div class="article-meta">
+                    <span>Jan 18, 2026</span>
+                    <span class="read-time">1 min read</span>
+                </div>
+            </a>
+            
+        </div>
+        
+<nav class="pagination" aria-label="Page navigation">
+    <div class="pagination-info">
+        <span class="pagination-page">Page 3 of 3</span>
+    </div>
+    <div class="pagination-links">
+        
+        <a href="/tags/validation/page/2/" class="pagination-link pagination-prev" aria-label="Previous page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Previous
+        </a>
+        
+        
+        
+        
+        <a href="/tags/validation/" class="pagination-link">1</a>
+        
+        
+        
+        <a href="/tags/validation/page/2/" class="pagination-link">2</a>
+        
+        
+        
+        <span class="pagination-link pagination-current" aria-current="page">3</span>
+        
+        
+        
+        
+    </div>
+</nav>
+
+
+    </section>
+</div>
+
+    
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <div class="footer-links">
+                    <a href="/about" class="footer-link">About Me</a>
+                    <a href="/index.xml" class="footer-link">RSS Feed</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Topics</h3>
+                <div class="footer-links">
+                    
+                    <a href="//localhost:1313/categories/javascript/" class="footer-link">Javascript</a>
+                    
+                    <a href="//localhost:1313/categories/mongodb/" class="footer-link">Mongodb</a>
+                    
+                    <a href="//localhost:1313/categories/general/" class="footer-link">General</a>
+                    
+                    <a href="//localhost:1313/categories/nodejs/" class="footer-link">Nodejs</a>
+                    
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    
+                    <a href="https://github.com/manisuec" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+                    
+                    
+                    <a href="https://twitter.com/lifeclicks25" class="footer-link" target="_blank" rel="noopener">Twitter</a>
+                    
+                    
+                    <a href="https://linkedin.com/in/manish-prasad-64448614/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+                    
+                    
+                    <a href="https://medium.com/@manisuec" class="footer-link" target="_blank" rel="noopener">Medium</a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Manish Prasad. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

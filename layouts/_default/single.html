@@ -4,7 +4,7 @@
         <div class="post-header">
             <div class="post-header-top">
                 {{ with .Params.categories }}
-                <span class="article-tag">{{ index . 0 }}</span>
+                <a href="{{ "categories" | relURL }}/{{ index . 0 | urlize }}" class="article-tag">{{ index . 0 }}</a>
                 {{ end }}
                 <div class="share-icons-header">
                     {{ partial "share-icons.html" . }}
@@ -41,24 +41,26 @@
                 <div class="share-icons">
                     {{ partial "share-icons.html" . }}
                 </div>
+                {{ with .Site.Params.supportAuthor }}
                 <div class="support-author">
                     <span class="support-text">
-                        Enjoyed the story? Support more content like this by buying me a coffee ☕
+                        {{ .text }}
                     </span>
                     <a
-                        href="https://www.buymeacoffee.com/manisuec"
+                        href="{{ .url }}"
                         class="buymeacoffee-btn"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Buy me a coffee"
                     >
                         <img
-                            src="https://res.cloudinary.com/dkiurfsjm/image/upload/v1770031915/buymeacoffee_amggrj.png"
+                            src="{{ .imageUrl }}"
                             alt="Buy me a coffee"
                             loading="lazy"
                         />
                     </a>
                 </div>
+                {{ end }}
             </div>
         </div>
         </div>

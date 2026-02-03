@@ -12,7 +12,7 @@
     <header>
     <div class="container">
         <nav>
-            <a href="http://localhost:1313/" class="logo">Tech Insights</a>
+            <a href="//localhost:1313/" class="logo">Tech Insights</a>
             <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -22,7 +22,7 @@
                 
                 <a href="/post/" class="nav-item" onclick="closeMobileMenu()">Articles</a>
                 
-                <a href="/tags/" class="nav-item" onclick="closeMobileMenu()">Topics</a>
+                <a href="/categories/" class="nav-item" onclick="closeMobileMenu()">Topics</a>
                 
                 <a href="/about/" class="nav-item" onclick="closeMobileMenu()">About</a>
                 
@@ -71,9 +71,9 @@ document.addEventListener('keydown', function(event) {
     
 <div class="container">
     <section class="post-header">
-        <h1 class="post-title">All Topics</h1>
-        <p style="font-size: 1.25rem; color: #666; margin-top: 1rem;">
-            Explore 1 topics
+        <h1 class="post-title">Categories</h1>
+        <p class="hero-subtitle" style="margin-top: 1rem;">
+            Explore 4 categories
         </p>
     </section>
 
@@ -82,12 +82,63 @@ document.addEventListener('keydown', function(event) {
             
             
             
-            <a href="http://localhost:1313/categories/node.js/" class="topic-card">
-                <div class="topic-number">01</div>
-                <div class="topic-name">Node.js</div>
-                <div style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
-                    4 articles
+            
+            <a href="/categories/nodejs" class="topic-card">
+                
+                <img src="https://res.cloudinary.com/dkiurfsjm/image/upload/v1676698473/nodejs_dark_cjoudy.png" alt="Node.js/Express" class="topic-thumbnail">
+                
+                <div class="topic-name">Node.js/Express</div>
+                
+                
+                <div class="article-count" style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                    6 articles
                 </div>
+                
+            </a>
+            
+            
+            
+            <a href="/categories/mongodb" class="topic-card">
+                
+                <img src="https://res.cloudinary.com/dkiurfsjm/image/upload/v1675429691/MongoDB_jeatlj.jpg" alt="Mongodb" class="topic-thumbnail">
+                
+                <div class="topic-name">Mongodb</div>
+                
+                
+                <div class="article-count" style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                    8 articles
+                </div>
+                
+            </a>
+            
+            
+            
+            <a href="/categories/javascript" class="topic-card">
+                
+                <img src="https://res.cloudinary.com/dkiurfsjm/image/upload/v1675429691/JavaScript_v4qblf.jpg" alt="Javascript/Reactjs" class="topic-thumbnail">
+                
+                <div class="topic-name">Javascript/Reactjs</div>
+                
+                
+                <div class="article-count" style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                    8 articles
+                </div>
+                
+            </a>
+            
+            
+            
+            <a href="/categories/general" class="topic-card">
+                
+                <img src="https://res.cloudinary.com/dkiurfsjm/image/upload/v1692621749/general-tech_nou1q6.jpg" alt="General" class="topic-thumbnail">
+                
+                <div class="topic-name">General</div>
+                
+                
+                <div class="article-count" style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                    6 articles
+                </div>
+                
             </a>
             
         </div>
@@ -102,7 +153,6 @@ document.addEventListener('keydown', function(event) {
                 <h3>About</h3>
                 <div class="footer-links">
                     <a href="/about" class="footer-link">About Me</a>
-                    <a href="/contact" class="footer-link">Contact</a>
                     <a href="/index.xml" class="footer-link">RSS Feed</a>
                 </div>
             </div>
@@ -110,13 +160,13 @@ document.addEventListener('keydown', function(event) {
                 <h3>Topics</h3>
                 <div class="footer-links">
                     
-                    <a href="http://localhost:1313/tags/nodejs/" class="footer-link">Nodejs</a>
+                    <a href="//localhost:1313/categories/javascript/" class="footer-link">Javascript</a>
                     
-                    <a href="http://localhost:1313/tags/security/" class="footer-link">Security</a>
+                    <a href="//localhost:1313/categories/mongodb/" class="footer-link">Mongodb</a>
                     
-                    <a href="http://localhost:1313/tags/api/" class="footer-link">Api</a>
+                    <a href="//localhost:1313/categories/general/" class="footer-link">General</a>
                     
-                    <a href="http://localhost:1313/tags/express/" class="footer-link">Express</a>
+                    <a href="//localhost:1313/categories/nodejs/" class="footer-link">Nodejs</a>
                     
                 </div>
             </div>
@@ -124,16 +174,16 @@ document.addEventListener('keydown', function(event) {
                 <h3>Connect</h3>
                 <div class="footer-links">
                     
-                    <a href="https://github.com/yourusername" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/manisuec" class="footer-link" target="_blank" rel="noopener">GitHub</a>
                     
                     
-                    <a href="https://twitter.com/yourusername" class="footer-link" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://twitter.com/lifeclicks25" class="footer-link" target="_blank" rel="noopener">Twitter</a>
                     
                     
-                    <a href="https://linkedin.com/in/yourusername" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://linkedin.com/in/manish-prasad-64448614/" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
                     
                     
-                    <a href="https://medium.com/@yourusername" class="footer-link" target="_blank" rel="noopener">Medium</a>
+                    <a href="https://medium.com/@manisuec" class="footer-link" target="_blank" rel="noopener">Medium</a>
                     
                 </div>
             </div>

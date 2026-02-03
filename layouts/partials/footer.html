@@ -5,14 +5,13 @@
                 <h3>About</h3>
                 <div class="footer-links">
                     <a href="{{ "about" | relURL }}" class="footer-link">About Me</a>
-                    <a href="{{ "contact" | relURL }}" class="footer-link">Contact</a>
                     <a href="{{ "index.xml" | relURL }}" class="footer-link">RSS Feed</a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Topics</h3>
                 <div class="footer-links">
-                    {{ range first 4 .Site.Taxonomies.tags.ByCount }}
+                    {{ range first 4 .Site.Taxonomies.categories.ByCount }}
                     <a href="{{ .Page.Permalink }}" class="footer-link">{{ .Page.Title }}</a>
                     {{ end }}
                 </div>
