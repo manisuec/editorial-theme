@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    {{- with .Params.images }}
+    <meta property="og:image" content="{{ index . 0 }}">
+    {{- else }}
+    {{- with .Params.thumbnail }}
+    <meta property="og:image" content="{{ . }}">
+    {{- else }}
+    {{- with .Site.Params.images }}
+    <meta property="og:image" content="{{ index . 0 }}">
+    {{- end }}
+    {{- end }}
+    {{- end }}
+    {{- if .IsPage }}
+    <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+    {{- with .Lastmod }}
+    <meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">
+    {{- end }}
+    {{- with .Params.author }}
+    <meta property="article:author" content="{{ . }}">
+    {{- else }}
+    {{- with .Site.Params.author }}
+    <meta property="article:author" content="{{ . }}">
+    {{- end }}
+    {{- end }}
+    {{- end }}
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary }}{{ end }}">
+    {{- with .Params.images }}
+    <meta name="twitter:image" content="{{ index . 0 }}">
+    {{- else }}
+    {{- with .Params.thumbnail }}
+    <meta name="twitter:image" content="{{ . }}">
+    {{- else }}
+    {{- with .Site.Params.images }}
+    <meta name="twitter:image" content="{{ index . 0 }}">
+    {{- end }}
+    {{- end }}
+    {{- end }}
+
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
     {{ if .IsHome }}
     <script type="application/ld+json">
