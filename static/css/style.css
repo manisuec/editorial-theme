@@ -527,11 +527,35 @@ nav {
     color: #1A1A1A;
 }
 
+.newsletter-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.newsletter-message {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.newsletter-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.newsletter-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
 /* Footer */
 footer {
-    padding: 4rem 0;
+    padding: 1rem 0;
     border-top: 25px solid #1A1A1A;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .footer-content {
@@ -1513,5 +1537,318 @@ footer {
     .pagination-prev,
     .pagination-next {
         padding: 0.5rem 0.75rem;
+    }
+}
+
+/* ==================== About Page ==================== */
+
+.about-page {
+    padding: 1rem 0;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 3px solid #1A1A1A;
+}
+
+.about-title {
+    font-family: 'Fraunces', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.about-tagline {
+    font-size: 1.25rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.about-content p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.about-content img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 12px;
+    margin: 2rem auto;
+    display: block;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+    color: #1A1A1A;
+}
+
+.about-content h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+    color: #E63946;
+}
+
+.about-content h4 em {
+    font-style: normal;
+}
+
+.about-content a {
+    color: #E63946;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.about-content a:hover {
+    border-bottom-color: #E63946;
+}
+
+.about-content hr {
+    border: none;
+    height: 3px;
+    background: #1A1A1A;
+    margin: 1rem 0;
+}
+
+.about-content blockquote {
+    background: #fff;
+    border-left: 4px solid #E63946;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Hide the markdown table at the bottom */
+.about-content table {
+    display: none;
+}
+
+/* Social Links Section */
+.about-social {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 3px solid #1A1A1A;
+    border-bottom: 3px solid #1A1A1A;
+    margin-bottom: 3rem;
+}
+
+.about-social h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.about-social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #1A1A1A;
+    color: #F5F1E8;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-link.github:hover {
+    background: #333;
+}
+
+.social-link.twitter:hover {
+    background: #1DA1F2;
+}
+
+.social-link.linkedin:hover {
+    background: #0077B5;
+}
+
+.social-link.medium:hover {
+    background: #00ab6c;
+}
+
+.social-link.email:hover {
+    background: #E63946;
+}
+
+/* Support Section */
+.about-support {
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+}
+
+.about-support p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.about-support .support-btn {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.about-support .support-btn:hover {
+    transform: scale(1.05);
+}
+
+.about-support .support-btn img {
+    height: 50px;
+    width: auto;
+}
+
+/* About Page Responsive */
+@media (max-width: 1024px) {
+    .about-title {
+        font-size: 3rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-page {
+        padding: 2rem 0;
+    }
+
+    .about-hero {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+    }
+
+    .about-tagline {
+        font-size: 1.1rem;
+    }
+
+    .about-content {
+        margin-bottom: 2rem;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .about-content h4 {
+        font-size: 1.2rem;
+    }
+
+    .about-content img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .about-social {
+        padding: 2rem 0;
+    }
+
+    .about-social h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-social-links {
+        gap: 0.75rem;
+    }
+
+    .social-link {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .social-link svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .about-tagline {
+        font-size: 1rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.35rem;
+    }
+
+    .about-content h4 {
+        font-size: 1.1rem;
+    }
+
+    .social-link span {
+        display: none;
+    }
+
+    .social-link {
+        padding: 0.75rem;
+        border-radius: 50%;
+    }
+
+    .social-link svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .about-support {
+        padding: 1.5rem;
+    }
+
+    .about-support p {
+        font-size: 1rem;
     }
 }
