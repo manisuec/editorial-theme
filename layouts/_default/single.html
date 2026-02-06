@@ -111,4 +111,76 @@
     </div>
 </section>
 {{ end }}
+
+{{- with .Site.Params.mailerlite }}
+{{- if .enable }}
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Get the latest insights on backend development delivered to your inbox.</p>
+            <form id="post-newsletter-form" class="newsletter-form">
+                <input type="email" name="email" id="post-newsletter-email" class="newsletter-input" placeholder="your@email.com" required autocomplete="email"/>
+                <button type="submit" class="newsletter-btn" id="post-newsletter-submit">Subscribe</button>
+            </form>
+            <p id="post-newsletter-message" class="newsletter-message" style="display: none;"></p>
+        </div>
+    </div>
+</section>
+<script>
+(function() {
+    const form = document.getElementById('post-newsletter-form');
+    const emailInput = document.getElementById('post-newsletter-email');
+    const submitBtn = document.getElementById('post-newsletter-submit');
+    const messageEl = document.getElementById('post-newsletter-message');
+    const apiKey = '{{ .apiKey }}';
+    const groupId = '{{ .groupId }}';
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+        if (!email) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+        messageEl.style.display = 'none';
+
+        try {
+            const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + apiKey
+                },
+                body: JSON.stringify({
+                    email: email,
+                    groups: [groupId],
+                    status: 'active'
+                })
+            });
+
+            messageEl.style.display = 'block';
+
+            if (response.ok || response.status === 200 || response.status === 201) {
+                messageEl.textContent = 'Thanks for subscribing!';
+                messageEl.className = 'newsletter-message success';
+                emailInput.value = '';
+            } else {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Subscription failed');
+            }
+        } catch (error) {
+            messageEl.style.display = 'block';
+            messageEl.textContent = error.message || 'Something went wrong. Please try again.';
+            messageEl.className = 'newsletter-message error';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Subscribe';
+        }
+    });
+})();
+</script>
+{{- end }}
+{{- end }}
 {{ end }}
