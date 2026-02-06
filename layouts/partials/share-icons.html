@@ -1,12 +1,16 @@
 {{/*
   Share Icons Partial
-  Usage: {{ partial "share-icons.html" (dict "page" . "inline" false) }}
+  Usage: {{ partial "share-icons.html" . }} or {{ partial "share-icons.html" (dict "page" . "inline" false) }}
   Params:
-    - page: the page object (required)
+    - page: the page object (optional if passing page context directly)
     - inline: boolean - use buttons instead of links for use inside clickable cards (optional, default false)
 */}}
-{{- $page := .page | default . -}}
-{{- $inline := .inline | default false -}}
+{{- $page := . -}}
+{{- $inline := false -}}
+{{- if reflect.IsMap . -}}
+    {{- $page = .page -}}
+    {{- $inline = .inline | default false -}}
+{{- end -}}
 {{- $url := $page.Permalink | urlquery -}}
 {{- $title := $page.Title | urlquery -}}
 
