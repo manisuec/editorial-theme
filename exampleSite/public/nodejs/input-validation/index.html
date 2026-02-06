@@ -113,7 +113,7 @@ document.addEventListener('keydown', function(event) {
 <p>Input validation isn&rsquo;t just a nice-to-have—it&rsquo;s essential security hygiene. Every piece of data entering your application is potentially malicious until proven otherwise.</p>
 <h2 id="using-joi-for-validation">Using Joi for Validation</h2>
 <p>Joi provides a powerful, expressive API for validation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Joi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;joi&#39;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Joi</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;joi&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userSchema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Joi</span>.<span style="color:#a6e22e">object</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Joi</span>.<span style="color:#a6e22e">string</span>().<span style="color:#a6e22e">email</span>().<span style="color:#a6e22e">required</span>(),
@@ -129,10 +129,10 @@ document.addEventListener('keydown', function(event) {
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Proceed with validated data
-</span></span></span><span style="display:flex;"><span>});
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
 </span></span></code></pre></div><h2 id="sanitization-techniques">Sanitization Techniques</h2>
 <p>Always sanitize user input:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validator</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;validator&#39;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validator</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;validator&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sanitizedInput</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">escape</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">comment</span>);
 </span></span></code></pre></div><h2 id="best-practices">Best Practices</h2>
@@ -213,18 +213,18 @@ document.addEventListener('keydown', function(event) {
         <div class="section-label">More Articles</div>
         <div class="featured-content">
             
-            <a href="//localhost:1313/nodejs/this-input-validation/" class="article-card article-card-prev">
+            <a href="//localhost:1313/nodejs/input-validation/" class="article-card article-card-prev">
                 <div class="nav-arrow nav-arrow-prev">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                     <span>Previous</span>
                 </div>
                 
-                <span class="article-tag">nodejs</span>
+                <span class="article-tag">general</span>
                 
-                <h3>This Input Validation &amp; Sanitization in Node.js/Express.js</h3>
+                <h3>Master Input Validation &amp; Sanitization in Node.js/Express.js</h3>
                 <p class="article-excerpt"><p>Picture this: You&rsquo;ve just deployed your sleek new Node.js/Express API. Users are signing up, data is flowing, and your monitoring dashboard …</p></p>
                 <div class="article-meta">
-                    <span>Jan 18, 2026</span>
+                    <span>Jan 19, 2026</span>
                     <span class="read-time">1 min read</span>
                 </div>
             </a>
