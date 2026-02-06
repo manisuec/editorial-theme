@@ -1,41 +1,41 @@
-<footer>
+<footer role="contentinfo">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>About</h3>
-                <div class="footer-links">
-                    <a href="{{ "about" | relURL }}" class="footer-link">About Me</a>
-                    <a href="{{ "index.xml" | relURL }}" class="footer-link">RSS Feed</a>
-                </div>
+                <ul class="footer-links">
+                    <li><a href="{{ "about" | relURL }}" class="footer-link">About Me</a></li>
+                    <li><a href="{{ "index.xml" | relURL }}" class="footer-link">RSS Feed</a></li>
+                </ul>
             </div>
             <div class="footer-section">
                 <h3>Topics</h3>
-                <div class="footer-links">
+                <ul class="footer-links">
                     {{ range first 4 .Site.Taxonomies.categories.ByCount }}
-                    <a href="{{ .Page.Permalink }}" class="footer-link">{{ .Page.Title }}</a>
+                    <li><a href="{{ .Page.Permalink }}" class="footer-link">{{ .Page.Title }}</a></li>
                     {{ end }}
-                </div>
+                </ul>
             </div>
             <div class="footer-section">
                 <h3>Connect</h3>
-                <div class="footer-links">
+                <ul class="footer-links">
                     {{ with .Site.Params.social.github }}
-                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+                    <li><a href="{{ . }}" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     {{ end }}
                     {{ with .Site.Params.social.twitter }}
-                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">Twitter</a>
+                    <li><a href="{{ . }}" class="footer-link" target="_blank" rel="noopener noreferrer">Twitter</a></li>
                     {{ end }}
                     {{ with .Site.Params.social.linkedin }}
-                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">LinkedIn</a>
+                    <li><a href="{{ . }}" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                     {{ end }}
                     {{ with .Site.Params.social.medium }}
-                    <a href="{{ . }}" class="footer-link" target="_blank" rel="noopener">Medium</a>
+                    <li><a href="{{ . }}" class="footer-link" target="_blank" rel="noopener noreferrer">Medium</a></li>
                     {{ end }}
-                </div>
+                </ul>
             </div>
         </div>
         <div class="copyright">
-            © {{ now.Format "2006" }} {{ .Site.Params.author }}. All rights reserved.
+            <p>© {{ now.Format "2006" }} {{ .Site.Params.author }}. All rights reserved.</p>
         </div>
     </div>
 </footer>
