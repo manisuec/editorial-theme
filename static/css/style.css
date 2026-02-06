@@ -4,7 +4,7 @@
 /* ==================== CSS Variables ==================== */
 :root {
     /* Colors */
-    --color-primary: var(--color-primary);
+    --color-primary: #E63946;
     --color-primary-dark: #c5303c;
     --color-text: #1A1A1A;
     --color-text-muted: #666;
@@ -269,7 +269,7 @@ nav {
     align-items: center;           /* vertical centering */
     justify-content: center;       /* horizontal centering – nice bonus */
     padding: 1rem 3rem;
-    background: var(--color-primary);
+    background: var(--color-primary-dark);
     color: #F5F1E8;
     text-decoration: none;
     font-weight: 600;
