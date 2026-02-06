@@ -302,12 +302,11 @@ nav {
     border: 3px solid #1A1A1A;
 }
 
-.hero-image-text {
-    font-family: 'Fraunces', serif;
-    font-size: 12rem;
-    font-weight: 900;
-    color: var(--color-primary);
-    transform: rotate(-7deg);
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 /* Featured Article Section */
@@ -1254,8 +1253,8 @@ footer {
         order: -1;
     }
 
-    .hero-image-text {
-        font-size: 5rem;
+    .hero-img {
+        object-fit: contain;
     }
 
     /* Featured Section */
@@ -1461,8 +1460,8 @@ footer {
         height: 250px;
     }
 
-    .hero-image-text {
-        font-size: 4rem;
+    .hero-img {
+        object-fit: contain;
     }
 
     /* Featured */
