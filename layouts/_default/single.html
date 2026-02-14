@@ -4,7 +4,7 @@
         <div class="post-header">
             <div class="post-header-top">
                 {{ with .Params.categories }}
-                <a href="{{ "categories" | relURL }}/{{ index . 0 | urlize }}" class="article-tag">{{ index . 0 }}</a>
+                <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}" class="article-tag">{{ index . 0 }}</a>
                 {{ end }}
                 <div class="share-icons-header">
                     {{ partial "share-icons.html" . }}
@@ -30,7 +30,7 @@
         {{ if .Params.tags }}
         <div class="post-tags">
             {{ range .Params.tags }}
-            <a href="{{ "tags" | relURL }}/{{ . | urlize }}" class="post-tag">#{{ . }}</a>
+            <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="post-tag">#{{ . }}</a>
             {{ end }}
         </div>
         {{ end }}

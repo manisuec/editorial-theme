@@ -69,7 +69,7 @@
                         <div class="topic-name">{{ $page.Title }}</div>
                     </a>
                 {{ else }}
-                    <a href="{{ "/categories/" | relURL }}{{ $url }}" class="topic-card">
+                    <a href="{{ "categories/" | relURL }}{{ $url | strings.TrimPrefix "/" }}" class="topic-card">
                         <img src="{{ $thumbnail }}" alt="{{ $title }}" class="topic-thumbnail" loading="lazy">
                         <div class="topic-name">{{ $title }}</div>
                     </a>
