@@ -1,0 +1,57 @@
+{{/*
+  Article Card Partial
+  Usage: {{ partial "article-card.html" (dict "page" . "showShare" true "showExcerpt" true "nav" "") }}
+  Params:
+    - page: the page object (required)
+    - showShare: boolean to show share icons (optional, default false)
+    - showExcerpt: boolean to show excerpt (optional, default true)
+    - nav: "prev" or "next" for navigation cards (optional)
+    - excerptLength: truncate length (optional, default 150)
+*/}}
+{{- $page := .page -}}
+{{- $showShare := .showShare | default false -}}
+{{- $showExcerpt := .showExcerpt | default true -}}
+{{- $nav := .nav | default "" -}}
+{{- $excerptLength := .excerptLength | default 150 -}}
+
+<a href="{{ $page.Permalink }}" class="article-card{{ with $nav }} article-card-{{ . }}{{ end }}" aria-label="Read article: {{ $page.Title }}">
+    {{- if eq $nav "prev" }}
+    <div class="nav-arrow nav-arrow-prev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Previous</span>
+    </div>
+    {{- with $page.Params.categories }}
+    <span class="article-tag">{{ index . 0 }}</span>
+    {{- end }}
+    {{- else if eq $nav "next" }}
+    <div class="nav-arrow nav-arrow-next">
+        <span>Next</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+    {{- with $page.Params.categories }}
+    <span class="article-tag">{{ index . 0 }}</span>
+    {{- end }}
+    {{- else }}
+    <div class="article-header">
+        {{- with $page.Params.categories }}
+        <span class="article-tag">{{ index . 0 }}</span>
+        {{- end }}
+        {{- if $showShare }}
+        <div class="share-icons-inline">
+            {{ partial "share-icons.html" (dict "page" $page "inline" true) }}
+        </div>
+        {{- end }}
+    </div>
+    {{- end }}
+
+    <h3>{{ $page.Title }}</h3>
+
+    {{- if $showExcerpt }}
+    <p class="article-excerpt">{{ $page.Summary | truncate $excerptLength }}</p>
+    {{- end }}
+
+    <div class="article-meta">
+        <span>{{ $page.Date.Format "Jan 2, 2006" }}</span>
+        <span class="read-time">{{ $page.ReadingTime }} min read</span>
+    </div>
+</a>

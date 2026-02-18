@@ -18,17 +18,13 @@
             </div>
 
             <div class="hero-actions-wrapper">
-                <p class="newsletter-label">Stay in the loop for insights on backend development</p>
-                <form id="newsletter-form" class="newsletter-form" action="#" method="post">
-                    <input name="email" class="newsletter-input" placeholder="your@email.com" required autocomplete="email"/>
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
-                
+                <p class="newsletter-label">{{ .Site.Params.newsletterLabel | default "Stay in the loop for insights on backend development" }}</p>
+                {{ partial "newsletter-form.html" (dict "id" "hero-newsletter" "context" .) }}
             </div>
         </div>
 
         <div class="hero-image">
-            <div class="hero-image-text">{ }</div>
+            <img src="/img/hero-image.svg" alt="Tech Insights - Deep Tech Wisdom for backend developers" class="hero-img" />
         </div>
     </div>
 </section>
@@ -47,24 +43,7 @@
 
             <div class="featured-content">
                 {{ range first 3 (.Site.RegularPages.ByDate.Reverse) }}
-                <a href="{{ .Permalink }}" class="article-card">
-                    <div class="article-header">
-                        {{ with .Params.categories }}
-                        <span class="article-tag">{{ index . 0 }}</span>
-                        {{ end }}
-                        <div class="share-icons-inline">
-                            {{ partial "share-icons-inline.html" . }}
-                        </div>
-                    </div>
-                    <h3>{{ .Title }}</h3>
-                    <p class="article-excerpt">
-                        {{ .Summary | truncate 150 }}
-                    </p>
-                    <div class="article-meta">
-                        <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-                        <span class="read-time">{{ .ReadingTime }} min read</span>
-                    </div>
-                </a>
+                {{ partial "article-card.html" (dict "page" . "showShare" true "showExcerpt" true) }}
                 {{ end }}
             </div>
         </div>
@@ -86,12 +65,12 @@
                 {{ if (index $taxonomy $url) }}
                     {{ $page := (index $taxonomy $url).Page }}
                     <a href="{{ $page.Permalink }}" class="topic-card">
-                        <img src="{{ $thumbnail }}" alt="{{ $page.Title }}" class="topic-thumbnail">
+                        <img src="{{ $thumbnail }}" alt="{{ $page.Title }}" class="topic-thumbnail" loading="lazy">
                         <div class="topic-name">{{ $page.Title }}</div>
                     </a>
                 {{ else }}
-                    <a href="{{ "/categories/" | relURL }}{{ $url }}" class="topic-card">
-                        <img src="{{ $thumbnail }}" alt="{{ $title }}" class="topic-thumbnail">
+                    <a href="{{ "categories/" | relURL }}{{ $url | strings.TrimPrefix "/" }}" class="topic-card">
+                        <img src="{{ $thumbnail }}" alt="{{ $title }}" class="topic-thumbnail" loading="lazy">
                         <div class="topic-name">{{ $title }}</div>
                     </a>
                 {{ end }}

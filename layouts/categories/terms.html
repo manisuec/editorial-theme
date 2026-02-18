@@ -13,7 +13,7 @@
             {{ range .Site.Home.Params.categories.items }}
             {{ $item := . }}
             {{ $url := .url | strings.TrimPrefix "/" }}
-            <a href="{{ "/categories/" | relURL }}{{ $url }}" class="topic-card">
+            <a href="{{ "categories/" | relURL }}{{ $url }}" class="topic-card">
                 {{ with .thumbnail }}
                 <img src="{{ . | relURL }}" alt="{{ $item.title }}" class="topic-thumbnail">
                 {{ end }}

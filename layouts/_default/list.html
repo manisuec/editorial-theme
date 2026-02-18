@@ -13,19 +13,7 @@
         <div class="section-label">All Articles</div>
         <div class="featured-content">
             {{ range .Paginator.Pages }}
-            <a href="{{ .Permalink }}" class="article-card">
-                {{ with .Params.categories }}
-                <span class="article-tag">{{ index . 0 }}</span>
-                {{ end }}
-                <h3>{{ .Title }}</h3>
-                <p class="article-excerpt">
-                    {{ .Summary | truncate 150 }}
-                </p>
-                <div class="article-meta">
-                    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-                    <span class="read-time">{{ .ReadingTime }} min read</span>
-                </div>
-            </a>
+            {{ partial "article-card.html" (dict "page" . "showExcerpt" true) }}
             {{ end }}
         </div>
     </section>
