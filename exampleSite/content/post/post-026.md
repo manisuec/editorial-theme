@@ -14,7 +14,7 @@ Picture this: You've just deployed your sleek new Node.js/Express API. Users are
 
 ## Why Input Validation Matters
 
-Input validation isn't just a nice-to-have—it's essential security hygiene. Every piece of data entering your application is potentially malicious until proven otherwise.
+Input validation isn't just a nice-to-have; it's essential security hygiene. Every piece of data entering your application is potentially malicious until proven otherwise.
 
 ## Using Joi for Validation
 

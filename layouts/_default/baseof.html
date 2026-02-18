@@ -17,6 +17,10 @@
     }
     </script>
     {{ end }}
+    {{ if .Site.Params.googleAdsense.enable }}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAdsense.clientId }}" crossorigin="anonymous">   
+    </script>
+    {{ end }}
 </head>
 <body>
     {{ partial "header.html" . }}
