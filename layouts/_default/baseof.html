@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}</title>
+    <title>
+      {{ if .IsHome }}
+        {{ .Site.Title }}
+      {{ else if and (eq .Kind "term") (eq .Data.Plural "categories") }}
+        Tech Insights on {{ .Title }}
+      {{ else if and (eq .Kind "taxonomy") (eq .Data.Plural "categories")  }}
+        Tech Insights on | {{ .Site.Title }}
+      {{ else if and (eq .Kind "taxonomy") (eq .Data.Plural "tags") }}
+        Tech Insights on {{ .Title }}
+      {{ else }}
+        {{ .Title }}{{ end }}
+    </title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
 
