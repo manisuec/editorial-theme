@@ -1470,6 +1470,70 @@ footer {
     color: #666;
     font-weight: 600;
 }
+.tags {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+.tags-section {
+  margin-top: 2rem;
+}
+
+.tags-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag-card {
+  padding: 8px 14px;
+  border-radius: 20px;
+  background:#E7EFE6;
+  color:#2F5D3A;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.tag-card:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.tag-count {
+  font-size: 0.8rem;
+  color: #666;
+}
+.all-tags-wrapper{
+margin-top: 1.5rem;
+}
+
+.all-tags-link{
+display:inline-block;
+padding:8px 16px;
+background:#E8EDF6;
+color:#344B6A;
+text-decoration:none;
+font-size:0.9rem;
+font-weight:500;
+border-radius:18px;
+border:1px solid #C7D2E5;
+transition:all 0.2s ease;
+}
+
+.all-tags-link:hover{
+background:#344B6A;
+color:#ffffff;
+transform:translateY(-1px);
+}
 
 @media (max-width: 768px) {
     .pagination {

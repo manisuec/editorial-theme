@@ -6,14 +6,19 @@
     <title>
       {{ if .IsHome }}
         {{ .Site.Title }}
+      {{ else if eq .Kind "section" }}
+        {{ .Site.Title }} - {{ .Title }}
       {{ else if and (eq .Kind "term") (eq .Data.Plural "categories") }}
         Tech Insights on {{ .Title }}
       {{ else if and (eq .Kind "taxonomy") (eq .Data.Plural "categories")  }}
-        Tech Insights on | {{ .Site.Title }}
+        {{ .Site.Title }}
       {{ else if and (eq .Kind "taxonomy") (eq .Data.Plural "tags") }}
         Tech Insights on {{ .Title }}
+      {{ else if and (eq .Kind "term") (eq .Data.Plural "tags") }}
+        Tech Insights on {{ .Title }}
       {{ else }}
-        {{ .Title }}{{ end }}
+        {{ .Title }}
+      {{ end }}
     </title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
