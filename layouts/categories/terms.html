@@ -28,5 +28,31 @@
             {{ end }}
         </div>
     </section>
+
+    <!-- TAGS SECTION -->
+    <section class="tags">
+      <h2 class="section-title">Popular Tags</h2>
+
+      <div class="tags-grid">
+          {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            {{ if gt .Count 5 }}
+            <a href="{{ "tags/" | relURL }}{{ $name | urlize }}" class="tag-card">
+
+                <span class="tag-name">
+                    #{{ $name }}
+                </span>
+
+                <span class="tag-count">
+                    {{ $taxonomy.Count }}
+                </span>
+
+            </a>
+            {{ end }}
+          {{ end }}
+      </div>
+      <div class="all-tags-wrapper">
+        <a href="{{ "tags/" | relURL }}" class="all-tags-link">All Tags →</a>
+      </div>
+    </section>
 </div>
 {{ end }}
