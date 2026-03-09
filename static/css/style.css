@@ -902,6 +902,50 @@ footer {
     color: #444;
 }
 
+.post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e5e5;
+}
+
+.post-content th {
+    background: #1A1A1A;
+    color: #F5F1E8;
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-family: 'Fraunces', serif;
+    letter-spacing: 0.02em;
+}
+
+.post-content td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e5e5e5;
+    color: #444;
+}
+
+.post-content tr:last-child td {
+    border-bottom: none;
+}
+
+.post-content tr:hover td {
+    background: #fafafa;
+}
+
+.post-content th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.post-content th:last-child {
+    border-top-right-radius: 8px;
+}
+
 .post-content blockquote p {
     margin-bottom: 0;
 }
