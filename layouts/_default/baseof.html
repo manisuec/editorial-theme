@@ -22,9 +22,17 @@
     </title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 
     <!-- Open Graph & Twitter Card Meta Tags -->
     {{ partial "opengraph.html" . }}
+
+    <!-- Schema.org Structured Data -->
+    {{ if .IsHome }}
+    {{ partial "schema/organization.html" . }}
+    {{ else if eq .Kind "page" }}
+    {{ partial "schema/article.html" . }}
+    {{ end }}
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
@@ -35,7 +43,7 @@
     <meta name="theme-color" content="#E63946">
 
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-    {{ if .IsHome }}
+    <!-- {{ if .IsHome }}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -45,7 +53,7 @@
         "url": "{{ .Site.BaseURL }}"
     }
     </script>
-    {{ end }}
+    {{ end }} -->
     {{ if .Site.Params.googleAdsense.enable }}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAdsense.clientId }}" crossorigin="anonymous">   
     </script>
