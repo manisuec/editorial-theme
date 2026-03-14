@@ -1,0 +1,60 @@
+{{- $logo := .Site.Params.logo | absURL -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ .Site.BaseURL }}#organization",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      {{- with .Site.Params.description }}
+      "description": "{{ . }}",
+      {{- end }}
+      {{- with $logo }}
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ . }}",
+        "@id": "{{ $.Site.BaseURL }}#logo"
+      },
+      "image": "{{ . }}",
+      {{- end }}
+      {{- with .Site.Params.contact }}
+      {{- with .email }}
+      "email": "{{ . }}",
+      {{- end }}
+      {{- with .address }}
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ . }}"
+      },
+      {{- end }}
+      {{- end }}
+      "sameAs": [
+        {{- $socials := slice -}}
+        {{- with .Site.Params.socials -}}
+          {{- range $name, $url := . -}}
+            {{- if and $url (ne $url "#") -}}
+              {{- $socials = $socials | append $url -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- delimit $socials ", " -}}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ .Site.BaseURL }}#website",
+      "url": "{{ .Site.BaseURL }}",
+      "name": "{{ .Site.Title }}",
+      {{- with .Site.Params.description }}
+      "description": "{{ . }}",
+      {{- end }}
+      "publisher": {
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "inLanguage": "{{ .Site.LanguageCode | default "en-US" }}"
+    }
+  ]
+}
+</script>
