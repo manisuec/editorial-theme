@@ -84,6 +84,42 @@
 </section>
 {{ end }}
 
+{{ if eq .Section "post" }}
+{{ $related := first 6 ((where .Site.RegularPages "Section" "post") | shuffle) }}{{ $related = $related | complement (slice .) }}
+{{ if gt (len $related) 0 }}
+<section class="related-posts" aria-label="Related articles">
+    <div class="container">
+        <div class="related-posts-header">
+            <div class="section-label">You might also enjoy</div>
+        </div>
+        <div class="related-posts-grid">
+            {{ range $related }}
+            <a href="{{ .Permalink }}" class="related-post-card" aria-label="Read article: {{ .Title }}">
+                {{ with .Params.titleImage }}
+                <div class="related-post-image">
+                    <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" decoding="async" />
+                </div>
+                {{ end }}
+                <div class="related-post-body">
+                    {{ with index .Params.categories 0 }}
+                    <span class="article-tag">{{ . }}</span>
+                    {{ end }}
+                    <h3>{{ $.Title }}</h3>
+                    {{ with $.Params.description }}
+                    <p class="related-post-excerpt">{{ . }}</p>
+                    {{ end }}
+                    <div class="article-meta">
+                        <span>{{ $.Date.Format "Jan 2, 2006" }}</span>
+                        <span class="read-time">{{ $.ReadingTime }} min read</span>
+                    </div>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
+
 {{- if .Site.Params.mailerlite.enable }}
 <section class="newsletter-section">
     <div class="container">
