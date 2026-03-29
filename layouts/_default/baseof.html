@@ -42,6 +42,11 @@
     <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
     <meta name="theme-color" content="#E63946">
 
+    <!-- Fonts: preloaded for performance (moved from CSS @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap">
+
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
     <!-- {{ if .IsHome }}
     <script type="application/ld+json">
@@ -71,6 +76,7 @@
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+    {{ if eq .Kind "page" }}<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>{{ end }}
     {{ partial "header.html" . }}
 
     <main id="main-content">
@@ -78,5 +84,23 @@
     </main>
 
     {{ partial "footer.html" . }}
+
+    {{ if eq .Kind "page" }}
+    <script>
+    (function() {
+        // Reading progress bar
+        var progressBar = document.getElementById('readingProgress');
+        if (progressBar) {
+            window.addEventListener('scroll', function() {
+                var scrollTop = window.scrollY;
+                var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (docHeight > 0) {
+                    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+                }
+            }, { passive: true });
+        }
+    })();
+    </script>
+    {{ end }}
 </body>
 </html>
