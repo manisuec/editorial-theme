@@ -1020,7 +1020,6 @@ footer {
 .post-content blockquote {
     margin: 2rem 0;
     padding: 1.5rem 2rem;
-    background: #fff;
     border-left: 5px solid #E63946;
     border-right: 2px solid var(--color-text-light);
     border-bottom: 2px solid var(--color-text-light);
