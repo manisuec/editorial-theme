@@ -47,7 +47,7 @@
     <h3>{{ $page.Title }}</h3>
 
     {{- if $showExcerpt }}
-    <p class="article-excerpt">{{ $page.Summary | truncate $excerptLength }}</p>
+    <p class="article-excerpt">{{ $page.Summary | plainify | truncate $excerptLength | htmlUnescape }}</p>
     {{- end }}
 
     <div class="article-meta">
