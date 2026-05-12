@@ -1,0 +1,6 @@
+{{- with .Params.tldr -}}
+<aside class="tldr" aria-label="Article summary">
+    <span class="tldr-label">TL;DR</span>
+    <div class="tldr-body">{{ . | markdownify }}</div>
+</aside>
+{{- end -}}

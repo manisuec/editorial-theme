@@ -32,7 +32,12 @@
     {{ partial "schema/organization.html" . }}
     {{ else if eq .Kind "page" }}
     {{ partial "schema/article.html" . }}
+    {{ partial "schema/breadcrumb.html" . }}
     {{ end }}
+
+    <!-- RSS discovery -->
+    <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | absURL }}">
+    {{ if .IsHome }}<link rel="me" href="https://github.com/manisuec">{{ end }}
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">

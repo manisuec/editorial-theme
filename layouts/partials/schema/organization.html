@@ -30,17 +30,15 @@
       },
       {{- end }}
       {{- end }}
-      "sameAs": [
-        {{- $socials := slice -}}
-        {{- with .Site.Params.socials -}}
-          {{- range $name, $url := . -}}
-            {{- if and $url (ne $url "#") -}}
-              {{- $socials = $socials | append $url -}}
-            {{- end -}}
+      {{- $socials := slice -}}
+      {{- with .Site.Params.social -}}
+        {{- range $name, $url := . -}}
+          {{- if and $url (ne $url "#") (not (hasPrefix $url "mailto:")) -}}
+            {{- $socials = $socials | append $url -}}
           {{- end -}}
         {{- end -}}
-        {{- delimit $socials ", " -}}
-      ]
+      {{- end -}}
+      "sameAs": {{ $socials | jsonify | safeJS }}
     },
     {
       "@type": "WebSite",

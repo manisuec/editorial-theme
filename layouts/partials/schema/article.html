@@ -39,6 +39,17 @@
     {{- with $.Site.Params.url }},
     "url": "{{ . }}"
     {{- end }}
+    {{- $socials := slice -}}
+    {{- with $.Site.Params.social -}}
+      {{- range $name, $url := . -}}
+        {{- if and $url (ne $url "#") (not (hasPrefix $url "mailto:")) -}}
+          {{- $socials = $socials | append $url -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $socials }},
+    "sameAs": {{ $socials | jsonify | safeJS }}
+    {{- end }}
   },
   {{- else }}
   "author": {
