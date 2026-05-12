@@ -1,0 +1,15 @@
+{{- $pages := where .Site.RegularPages "Section" "post" -}}
+{{- $list := slice -}}
+{{- range $pages -}}
+  {{- $desc := .Description -}}
+  {{- if not $desc }}{{ $desc = .Summary | plainify }}{{ end -}}
+  {{- $list = $list | append (dict
+    "title" .Title
+    "url" .RelPermalink
+    "description" $desc
+    "tags" (.Params.tags | default slice)
+    "categories" (.Params.categories | default slice)
+    "date" (.Date.Format "Jan 2, 2006")
+  ) -}}
+{{- end -}}
+{{- $list | jsonify -}}
