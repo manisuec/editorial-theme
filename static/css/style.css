@@ -2553,3 +2553,11 @@ transform:translateY(-1px);
         font-size: 1.1rem;
     }
 }
+
+/* Mermaid: hide raw source until the diagram has rendered.
+   The `.mermaid-pending` class is added by JS, so no-JS visitors still see
+   the source text rather than a blank gap. Mermaid sets data-processed="true"
+   on the <pre> once the SVG is in place, which restores visibility. */
+pre.mermaid.mermaid-pending:not([data-processed="true"]) {
+    visibility: hidden;
+}

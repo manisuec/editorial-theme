@@ -131,5 +131,68 @@
     })();
     </script>
     {{ end }}
+    {{ if .Store.Get "hasMermaid" }}
+      <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+      <script>
+        (function () {
+          var diagrams = document.querySelectorAll('pre.mermaid');
+          if (!diagrams.length) return;
+
+          // Mark each diagram so CSS can hide raw source until render completes.
+          diagrams.forEach(function (d) { d.classList.add('mermaid-pending'); });
+
+          var loaded = false;
+          function load() {
+            if (loaded) return;
+            loaded = true;
+            import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')
+              .then(function (mod) {
+                mod.default.initialize({
+                  startOnLoad: false,
+                  theme: 'dark',
+                  themeVariables: {
+                    darkMode: true,
+                    background: '#1e1e2e',
+                    primaryColor: '#2a3a55',
+                    primaryTextColor: '#e6e6e6',
+                    primaryBorderColor: '#7aa2f7',
+                    lineColor: '#a9b1d6',
+                    secondaryColor: '#3b3052',
+                    tertiaryColor: '#24283b',
+                    textColor: '#e6e6e6',
+                    mainBkg: '#2a3a55',
+                    nodeBorder: '#7aa2f7',
+                    clusterBkg: '#1a1b26',
+                    clusterBorder: '#414868',
+                    edgeLabelBackground: '#1e1e2e',
+                    actorBkg: '#2a3a55',
+                    actorBorder: '#7aa2f7',
+                    actorTextColor: '#e6e6e6',
+                    noteBkgColor: '#3b3052',
+                    noteTextColor: '#e6e6e6',
+                    noteBorderColor: '#bb9af7'
+                  }
+                });
+                mod.default.run({ querySelector: 'pre.mermaid' });
+              });
+          }
+
+          if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+              for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                  io.disconnect();
+                  load();
+                  return;
+                }
+              }
+            }, { rootMargin: '300px 0px' });
+            diagrams.forEach(function (d) { io.observe(d); });
+          } else {
+            load();
+          }
+        })();
+      </script>
+    {{ end }}
 </body>
 </html>
