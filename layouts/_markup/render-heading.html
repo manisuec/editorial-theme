@@ -1,0 +1,6 @@
+{{- /* Headings get a link to themselves; the "#" is drawn by CSS so feeds and summaries stay clean */ -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>
+  {{- .Text -}}
+  <a class="heading-anchor" href="#{{ .Anchor }}" aria-label="Link to section: {{ .PlainText }}"></a>
+</h{{ .Level }}>
+{{- /* chomp trailing newline */ -}}

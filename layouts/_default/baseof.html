@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    // Apply a stored theme choice before first paint; without one the CSS follows the OS setting.
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    </script>
     <title>
       {{ if .IsHome }}
         {{ .Site.Title }}
@@ -22,6 +26,10 @@
     </title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description | default .Summary }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
+    {{- /* Thin tag pages stay crawlable but out of the index; keep in sync with sitemap.xml */}}
+    {{- if and (eq .Kind "term") (eq .Data.Plural "tags") (lt (len .Pages) (site.Params.tagIndexMinPages | default 3)) }}
+    <meta name="robots" content="noindex, follow">
+    {{- end }}
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 
     <!-- Open Graph & Twitter Card Meta Tags -->
@@ -29,7 +37,10 @@
 
     <!-- Schema.org Structured Data -->
     {{ if .IsHome }}
-    {{ partial "schema/organization.html" . }}
+    {{ partial "schema/website.html" . }}
+    {{ else if eq .Layout "about" }}
+    {{ partial "schema/person.html" . }}
+    {{ partial "schema/breadcrumb.html" . }}
     {{ else if eq .Kind "page" }}
     {{ partial "schema/article.html" . }}
     {{ partial "schema/breadcrumb.html" . }}
@@ -45,14 +56,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
     <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
-    <meta name="theme-color" content="#E63946">
+    <meta name="theme-color" content="#F6F7F5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0F1214" media="(prefers-color-scheme: dark)">
 
-    <!-- Fonts: preloaded for performance (moved from CSS @import) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap">
+    <!-- Fonts: self-hosted (static/fonts, @font-face in main.css); preload the latin subsets of the UI and reading faces -->
+    <link rel="preload" href="{{ "fonts/geist-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "fonts/literata-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
     <!-- {{ if .IsHome }}
     <script type="application/ld+json">
     {
@@ -64,13 +76,11 @@
     }
     </script>
     {{ end }} -->
-    {{ if .Site.Params.googleAdsense.enable }}
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAdsense.clientId }}" crossorigin="anonymous">   
-    </script>
-    {{ end }}
+    {{- if .Site.Params.googleAdsense.enable }}
+    <meta name="google-adsense-account" content="{{ .Site.Params.googleAdsense.clientId }}">
+    {{- end }}
     {{- with .Site.Params.googleAnalytics }}
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+    <!-- Google Analytics: calls queue in dataLayer until gtag.js loads -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -78,6 +88,36 @@
         gtag('config', '{{ . }}');
     </script>
     {{- end }}
+    <script>
+    // Load ads and analytics once the page has rendered so they don't compete with first paint.
+    (function () {
+        var scripts = [
+            {{- /* Ads run on articles only: one slot after the article (single.html) */}}
+            {{- if and .Site.Params.googleAdsense.enable (eq .Kind "page") (eq .Section "post") }}
+            { src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAdsense.clientId }}', crossOrigin: 'anonymous' },
+            {{- end }}
+            {{- with .Site.Params.googleAnalytics }}
+            { src: 'https://www.googletagmanager.com/gtag/js?id={{ . }}' },
+            {{- end }}
+        ];
+        if (!scripts.length) return;
+        function load() {
+            scripts.forEach(function (s) {
+                var el = document.createElement('script');
+                el.async = true;
+                el.src = s.src;
+                if (s.crossOrigin) el.crossOrigin = s.crossOrigin;
+                document.head.appendChild(el);
+            });
+        }
+        function schedule() {
+            if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 3000 });
+            else setTimeout(load, 200);
+        }
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, { once: true });
+    })();
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -113,6 +153,7 @@
     {{ partial "footer.html" . }}
 
     <script src="{{ "js/search.js" | relURL }}" defer></script>
+    <script src="{{ "js/site.js" | relURL }}" defer></script>
 
     {{ if eq .Kind "page" }}
     <script>

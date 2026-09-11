@@ -1,30 +1,40 @@
 {{ define "main" }}
 
-<article>
-    <div class="container">
-        <div class="post-header">
-            <div class="post-header-top">
-                {{ with .Params.categories }}
-                <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-tag">{{ index . 0 }}</a>
-                {{ end }}
-                <div class="share-icons-header">
-                    {{ partial "share-icons.html" . }}
-                </div>
-            </div>
+{{- /* Table of contents for posts with at least 3 sections: left margin on wide screens, a drop-down otherwise */}}
+{{- $h2 := findRE "<h2" .Content }}
+{{- $toc := "" }}
+{{- if ge (len $h2) 3 }}{{ $toc = .TableOfContents | replaceRE ` id="TableOfContents"` "" | safeHTML }}{{ end }}
+{{- $series := partial "series-info.html" . }}
+<article class="post">
+    <div class="container post-layout">
+        <div class="post-body">
+        <header class="post-header">
+            {{- with $series }}
+            <a href="{{ .page.RelPermalink }}" class="article-tag">{{ .page.Title }} · {{ .pos }} of {{ .total }}</a>
+            {{- else }}{{ with .Params.categories }}
+            <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-tag">{{ index . 0 }}</a>
+            {{- end }}{{ end }}
             <h1 class="post-title">{{ .Title }}</h1>
+            {{ with .Description }}<p class="post-dek">{{ . }}</p>{{ end }}
             <div class="post-meta-info">
-                <span>{{ .Date.Format "January 2, 2006" }}</span>
-                <span>•</span>
+                <span>by {{ .Params.author | default .Site.Params.author }}</span>
+                <span>published <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></span>
+                {{- if gt (.Lastmod.Sub .Date).Hours 24.0 }}
+                <span class="post-updated">updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></span>
+                {{- end }}
                 <span>{{ .ReadingTime }} min read</span>
-                {{ $author := .Params.author | default .Site.Params.author }}
-            {{ with $author }}
-                <span>•</span>
-                <span>By {{ . }}</span>
-            {{ end }}
+                {{- partial "tested.html" . }}
             </div>
-        </div>
+        </header>
 
         {{ partial "tldr.html" . }}
+
+        {{- with $toc }}
+        <details class="toc-mobile">
+            <summary>On this page <span>{{ len $h2 }} sections</span></summary>
+            {{ . }}
+        </details>
+        {{- end }}
 
         <div class="post-content">
             {{ .Content }}
@@ -37,6 +47,23 @@
             {{ end }}
         </div>
         {{ end }}
+
+        {{- with $series }}
+        {{- with .next }}
+        <a class="series-next" href="{{ .RelPermalink }}">
+            <span class="series-next-label">Next in {{ $series.page.Title }} · {{ add $series.pos 1 }} of {{ $series.total }}</span>
+            <strong>{{ .Title }}</strong>
+            <span class="series-next-meta">{{ .ReadingTime }} min read</span>
+        </a>
+        {{- else }}
+        <a class="series-next is-done" href="{{ $series.page.RelPermalink }}">
+            <span class="series-next-label">You've finished {{ $series.page.Title }}</span>
+            <strong>See all {{ $series.total }} posts in this path</strong>
+        </a>
+        {{- end }}
+        {{- end }}
+
+        {{ partial "author-card.html" . }}
 
         <div class="post-footer-actions">
             <div class="social-share">
@@ -67,8 +94,30 @@
             </div>
         </div>
         </div>
+        {{- with $toc }}
+        <aside class="post-toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            {{ . }}
+            <p class="toc-progress" data-reading-time="{{ $.ReadingTime }}">
+                <span class="toc-bar" aria-hidden="true"><i></i></span>
+                <span class="toc-left">{{ $.ReadingTime }} min read</span>
+            </p>
+        </aside>
+        {{- end }}
     </div>
 </article>
+
+{{- /* The single ad slot: after the article, before further reading. Needs an ad unit ID in
+       params.googleAdsense.articleSlot; turn Auto ads off in AdSense so no other ads are injected. */}}
+{{- if eq .Section "post" }}
+{{- with .Site.Params.googleAdsense }}{{ if and .enable .articleSlot }}
+<aside class="ad-slot container" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="{{ .clientId }}" data-ad-slot="{{ .articleSlot }}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+{{- end }}{{ end }}
+{{- end }}
 
 {{ if or .NextInSection .PrevInSection }}
 <section class="featured" aria-label="More articles">
@@ -87,12 +136,13 @@
 {{ end }}
 
 {{ if eq .Section "post" }}
-{{ $related := first 6 ((where .Site.RegularPages "Section" "post") | shuffle) }}{{ $related = $related | complement (slice .) }}
+{{- /* Posts that share tags and category with this one (see [related] in config.toml) */}}
+{{ $related := first 3 (.Site.RegularPages.Related .) }}
 {{ if gt (len $related) 0 }}
 <section class="related-posts" aria-label="Related articles">
     <div class="container">
         <div class="related-posts-header">
-            <div class="section-label">You might also enjoy</div>
+            <div class="section-label">Related articles</div>
         </div>
         <div class="related-posts-grid">
             {{ range first 6 $related }}

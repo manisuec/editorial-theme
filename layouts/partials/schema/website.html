@@ -1,0 +1,13 @@
+{{- /* Homepage: WebSite published by the site author (a Person, not an Organization). */ -}}
+{{- $person := partialCached "schema/person-node.html" . -}}
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" site.BaseURL)
+  "url" site.BaseURL
+  "name" site.Title
+  "inLanguage" (site.LanguageCode | default "en")
+  "publisher" (dict "@id" (index $person "@id"))
+-}}
+{{- with site.Params.description }}{{ $website = merge $website (dict "description" .) }}{{ end -}}
+{{- $schema := dict "@context" "https://schema.org" "@graph" (slice $website $person) -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

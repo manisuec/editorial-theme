@@ -1,0 +1,24 @@
+{{- /* Returns the site author's schema.org Person as a dict, built from
+       site.Params.author, site.Params.social and site.Params.person.
+       The @id is the About page, which is where the full entity lives. */ -}}
+{{- $p := site.Params.person | default dict -}}
+{{- $about := "about/" | absURL -}}
+{{- $person := dict
+  "@type" "Person"
+  "@id" (printf "%s#person" $about)
+  "name" site.Params.author
+  "url" $about
+-}}
+{{- with $p.description }}{{ $person = merge $person (dict "description" .) }}{{ end -}}
+{{- with $p.image }}{{ $person = merge $person (dict "image" (. | absURL)) }}{{ end -}}
+{{- with $p.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end -}}
+{{- with $p.worksFor }}{{ with .name }}{{ $person = merge $person (dict "worksFor" (dict "@type" "Organization" "name" . "url" $p.worksFor.url)) }}{{ end }}{{ end -}}
+{{- with $p.alumniOf }}{{ $person = merge $person (dict "alumniOf" (dict "@type" "CollegeOrUniversity" "name" .)) }}{{ end -}}
+{{- with $p.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end -}}
+{{- $sameAs := slice -}}
+{{- range $name, $url := site.Params.social -}}
+  {{- if and $url (ne $url "#") (not (hasPrefix $url "mailto:")) }}{{ $sameAs = $sameAs | append $url }}{{ end -}}
+{{- end -}}
+{{- range $p.sameAs }}{{ $sameAs = $sameAs | append . }}{{ end -}}
+{{- with $sameAs }}{{ $person = merge $person (dict "sameAs" (uniq .)) }}{{ end -}}
+{{- return $person -}}

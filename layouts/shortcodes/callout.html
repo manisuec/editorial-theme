@@ -1,0 +1,10 @@
+{{- /* Callouts that follow Pino's log levels.
+       {{< callout type="warn" title="Production note" >}}Markdown here{{< /callout >}}
+       type: info (30, default) | warn (40) | error (50); title is optional */ -}}
+{{- $type := .Get "type" | default "info" -}}
+{{- $level := index (dict "info" 30 "warn" 40 "error" 50) $type | default 30 -}}
+{{- $title := .Get "title" | default (index (dict "info" "Note" "warn" "Production note" "error" "Don't do this") $type) -}}
+<aside class="callout callout-{{ $type }}" role="note">
+  <p class="callout-label"><span>{{ $type }} · {{ $level }}</span>{{ with $title }} <b>{{ . }}</b>{{ end }}</p>
+  <div class="callout-body">{{ .Page.RenderString (dict "display" "block") .Inner }}</div>
+</aside>

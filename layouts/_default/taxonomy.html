@@ -1,20 +1,34 @@
 {{ define "main" }}
-{{ $articleCount := .Paginator.TotalNumberOfElements }}
-<div class="container">
-    <section class="post-header">
-        <h1 class="post-title">{{ .Title }}</h1>
-        <p class="hero-subtitle" style="margin-top: 1rem;">
-            {{ $articleCount }} {{ if eq $articleCount 1 }}article{{ else }}articles{{ end }}
-        </p>
-    </section>
+{{- $isPath := eq .Data.Plural "series" }}
+<div class="container archive">
+    <header class="post-header archive-header">
+        <p class="section-label"><a href="{{ printf "%s/" .Data.Plural | relURL }}">{{ if $isPath }}Reading paths{{ else }}{{ .Data.Plural | humanize }}{{ end }}</a></p>
+        <h1 class="post-title">{{ if eq .Data.Plural "tags" }}#{{ end }}{{ .Title }}</h1>
+        {{- if $isPath }}
+        {{- $mins := 0 }}{{ range .Pages }}{{ $mins = add $mins .ReadingTime }}{{ end }}
+        <p class="hero-subtitle">{{ len .Pages }} posts · {{ $mins }} min, best read in order</p>
+        {{- else }}
+        <p class="hero-subtitle">{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</p>
+        {{- end }}
+        {{- with .Description }}<p class="post-dek">{{ . }}</p>{{ end }}
+    </header>
 
-    <section class="featured">
-        <div class="featured-content">
-            {{ range .Paginator.Pages }}
-            {{ partial "article-card.html" (dict "page" . "showExcerpt" true) }}
-            {{ end }}
-        </div>
-        {{ partial "pagination.html" . }}
-    </section>
+    {{- if $isPath }}
+    {{- /* taxonomy order follows each post's series_weight */}}
+    <ol class="series-list">
+        {{- range $i, $p := (index site.Taxonomies.series .Data.Term).Pages }}
+        <li class="series-item">
+            <a href="{{ .RelPermalink }}">
+                <span class="series-num">{{ add $i 1 }}</span>
+                <span class="series-title">{{ .Title }}</span>
+                <span class="series-min">{{ .ReadingTime }} min</span>
+                {{- with .Description }}<span class="series-desc">{{ . }}</span>{{ end }}
+            </a>
+        </li>
+        {{- end }}
+    </ol>
+    {{- else }}
+    {{ partial "post-rows.html" (dict "pages" .Pages) }}
+    {{- end }}
 </div>
 {{ end }}

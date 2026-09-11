@@ -1,81 +1,112 @@
 {{ define "main" }}
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>
-                {{ with .Site.Params.heroTitle }}{{ . }}{{ else }}Deep<br>Tech<br>Wisdom{{ end }}
-            </h1>
-            <p class="subtitle">{{ .Site.Params.heroSubtitle }}</p>
-            
-            <div class="hero-meta">
-                {{ range .Site.Params.stats }}
-                <div class="meta-item">
-                    <span class="meta-label">{{ .label }}</span>
-                    <span class="meta-value">{{ .value }}</span>
-                </div>
-                {{ end }}
-                <a href="{{ "post" | relURL }}" class="hero-cta">Start Reading</a>
-            </div>
+{{- $posts := where (where site.RegularPages "Section" "post") "Date" "gt" (time "1970-01-01") }}
 
-            <div class="hero-actions-wrapper">
-                <p class="newsletter-label">{{ .Site.Params.newsletterLabel | default "Stay in the loop for insights on backend development" }}</p>
-                {{ partial "newsletter-form.html" (dict "id" "hero-newsletter" "context" .) }}
-            </div>
+<section class="home-intro">
+    {{- /* Two aligned rows on wide screens: headline beside the image, buttons beside the counts */}}
+    <div class="container home-intro-grid{{ if not site.Params.heroImage }} no-hero{{ end }}">
+        <div class="home-intro-text">
+            <p class="home-who">{{ site.Params.author }}{{ with site.Params.bio }} · {{ . }}{{ end }}</p>
+            <h1 class="home-title">{{ site.Params.heroTitle | default site.Title }}</h1>
+            {{- with site.Params.heroSubtitle }}
+            <p class="home-sub">{{ . }}</p>
+            {{- end }}
         </div>
-
-        <div class="hero-image">
-            <img src="/img/hero-image.svg" alt="Tech Insights - Deep Tech Wisdom for backend developers" class="hero-img" fetchpriority="high" />
+        <div class="home-cta">
+                {{- if site.Taxonomies.series }}
+                <a class="hero-cta" href="#paths">Start with a reading path</a>
+                {{- else }}
+                <a class="hero-cta" href="{{ "post/" | relURL }}">Browse the archive</a>
+                {{- end }}
+                {{- if site.Params.mailerlite.enable }}
+                <a class="hero-cta hero-cta-secondary" href="#subscribe">Get new posts by email</a>
+                {{- end }}
         </div>
+            {{- /* Hero image (params.heroImage); it is the largest thing above the fold, so it loads with high priority */}}
+            {{- with site.Params.heroImage }}
+            {{- $src := . }}{{ if not (hasPrefix . "http") }}{{ $src = . | relURL }}{{ end }}
+            <img class="home-hero" src="{{ $src }}" alt="{{ site.Params.heroImageAlt | default "" }}"
+                 width="{{ site.Params.heroImageWidth | default 600 }}" height="{{ site.Params.heroImageHeight | default 500 }}"
+                 fetchpriority="high" decoding="async">
+            {{- end }}
+            {{- with $posts }}
+            <dl class="home-facts">
+                <div><dt>Articles</dt><dd>{{ len . }}</dd></div>
+                <div><dt>Writing since</dt><dd>{{ (index .ByDate 0).Date.Year }}</dd></div>
+                {{- range first 2 site.Taxonomies.categories.ByCount }}
+                <div><dt>{{ .Page.LinkTitle }}</dt><dd>{{ .Count }}</dd></div>
+                {{- end }}
+            </dl>
+            {{- end }}
     </div>
 </section>
 
-<section class="featured">
+{{- with site.Taxonomies.series }}
+<section class="home-section" id="paths">
     <div class="container">
-        <div class="section-label">Latest Insights</div>
-        
-        <div class="featured-grid">
-            <div class="featured-sidebar">
-                <h2>{{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Site.Params.featuredTitle | default "Node.js Security Done Right" }}{{ end }}</h2>
-                <p>
-                    {{ with index (.Site.RegularPages.ByDate.Reverse) 0 }}{{ .Site.Params.featuredDescription | default "Production lessons from someone who's learned the hard way. Real vulnerabilities, real solutions." }}{{ end }}
-                </p>
-            </div>
-
-            <div class="featured-content">
-                {{ range first 3 (.Site.RegularPages.ByDate.Reverse) }}
-                {{ partial "article-card.html" (dict "page" . "showShare" true "showExcerpt" true) }}
-                {{ end }}
-            </div>
+        <div class="home-label"><h2>Reading paths</h2><a href="{{ "series/" | relURL }}">All paths →</a></div>
+        <div class="paths">
+            {{- range .ByCount }}
+            {{- $pages := .Pages }}
+            {{- $mins := 0 }}{{ range $pages }}{{ $mins = add $mins .ReadingTime }}{{ end }}
+            <a class="path" href="{{ .Page.RelPermalink }}">
+                <span class="path-head"><strong>{{ .Page.Title }}</strong><span>{{ len $pages }} posts · {{ $mins }} min</span></span>
+                {{- with .Page.Description }}<span class="path-desc">{{ . }}</span>{{ end }}
+                <ol>
+                    {{- range first 3 $pages }}<li>{{ .LinkTitle }}</li>{{ end }}
+                    {{- if gt (len $pages) 3 }}<li class="more">{{ sub (len $pages) 3 }} more</li>{{ end }}
+                </ol>
+            </a>
+            {{- end }}
         </div>
     </div>
 </section>
+{{- end }}
 
-<section class="topics">
+<section class="home-section">
     <div class="container">
-        <h2>Explore Topics</h2>
-        
+        <div class="home-label"><h2>Latest</h2><a href="{{ "post/" | relURL }}">Archive →</a></div>
+        <ol class="post-rows home-latest">
+            {{- range first 6 $posts.ByDate.Reverse }}
+            {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 | urlize }}{{ end }}
+            <li class="post-row">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+                <a href="{{ .RelPermalink }}" class="post-row-title">{{ .Title }}</a>
+                <span class="post-row-cat">{{ $cat }}</span>
+                <span class="post-row-min">{{ .ReadingTime }} min</span>
+            </li>
+            {{- end }}
+        </ol>
+    </div>
+</section>
+
+{{- with .Params.categories.items }}
+<section class="home-section">
+    <div class="container">
+        <div class="home-label"><h2>Topics</h2><a href="{{ "categories/" | relURL }}">All topics →</a></div>
         <div class="topics-grid">
-            {{ $categoryItems := .Params.categories.items }}
-            {{ $taxonomy := .Site.Taxonomies.categories }}
-            {{ range $categoryItems }}
-                {{ $title := .title }}
-                {{ $url := .url }}
-                {{ $thumbnail := .thumbnail }}
-                {{ $description := .description }}
-                {{ if (index $taxonomy $url) }}
-                    {{ $page := (index $taxonomy $url).Page }}
-                    <a href="{{ $page.Permalink }}" class="topic-card">
-                        <img src="{{ $thumbnail }}" alt="{{ $page.Title }}" class="topic-thumbnail" loading="lazy">
-                        <div class="topic-name">{{ $page.Title }}</div>
-                    </a>
-                {{ else }}
-                    <a href="{{ "categories/" | relURL }}{{ $url | strings.TrimPrefix "/" }}" class="topic-card">
-                        <img src="{{ $thumbnail }}" alt="{{ $title }}" class="topic-thumbnail" loading="lazy">
-                        <div class="topic-name">{{ $title }}</div>
-                    </a>
-                {{ end }}
-            {{ end }}
+            {{- $taxonomy := site.Taxonomies.categories }}
+            {{- range . }}
+            {{- $slug := .url | strings.TrimPrefix "/" }}
+            <a href="{{ printf "categories/%s/" $slug | relURL }}" class="topic-card">
+                {{- with .thumbnail }}<img src="{{ . }}" alt="" class="topic-thumbnail" width="44" height="44" loading="lazy">{{ end }}
+                <span class="topic-name">{{ .title }}</span>
+                {{- with index $taxonomy $slug }}<span class="article-count">{{ .Count }} articles</span>{{ end }}
+            </a>
+            {{- end }}
         </div>
     </div>
 </section>
+{{- end }}
+
+{{- if site.Params.mailerlite.enable }}
+<section class="newsletter-section" id="subscribe">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>{{ site.Params.newsletterTitle | default "New posts by email" }}</h2>
+            <p>{{ site.Params.newsletterDescription | default "Get the latest insights on backend development delivered to your inbox." }}</p>
+            {{ partial "newsletter-form.html" (dict "id" "home-newsletter" "context" .) }}
+        </div>
+    </div>
+</section>
+{{- end }}
 {{ end }}

@@ -1,0 +1,22 @@
+{{- /* Author card at the end of each post; reads params.author, params.person, params.social, params.projects */ -}}
+{{- $p := site.Params.person | default dict -}}
+<section class="author-card" aria-label="About the author">
+    {{- with $p.image }}
+    <img class="author-avatar" src="{{ . }}" alt="" width="48" height="48" loading="lazy">
+    {{- else }}
+    <span class="author-avatar" aria-hidden="true">{{ range split site.Params.author " " }}{{ substr . 0 1 }}{{ end }}</span>
+    {{- end }}
+    <div class="author-body">
+        <p class="author-name"><a href="{{ "about/" | relURL }}">{{ site.Params.author }}</a></p>
+        {{- with $p.description }}
+        <p class="author-desc">{{ . }}
+            {{- $names := slice }}{{ range first 2 site.Params.projects }}{{ $names = $names | append .name }}{{ end }}
+            {{- with $names }} Maintains {{ delimit . ", " " and " }}.{{ end }}</p>
+        {{- end }}
+        <p class="author-links">
+            {{- with site.Params.social.github }}<a href="{{ . }}" rel="me noopener" target="_blank">GitHub</a>{{ end }}
+            {{- with site.Params.social.linkedin }}<a href="{{ . }}" rel="me noopener" target="_blank">LinkedIn</a>{{ end }}
+            {{- with site.Params.social.twitter }}<a href="{{ . }}" rel="me noopener" target="_blank">X</a>{{ end }}
+        </p>
+    </div>
+</section>
