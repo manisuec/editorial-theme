@@ -4,13 +4,16 @@
 {{- $h2 := findRE "<h2" .Content }}
 {{- $toc := "" }}
 {{- if ge (len $h2) 3 }}{{ $toc = .TableOfContents | replaceRE ` id="TableOfContents"` "" | safeHTML }}{{ end }}
+{{- $series := partial "series-info.html" . }}
 <article class="post">
     <div class="container post-layout">
         <div class="post-body">
         <header class="post-header">
-            {{ with .Params.categories }}
+            {{- with $series }}
+            <a href="{{ .page.RelPermalink }}" class="article-tag">{{ .page.Title }} · {{ .pos }} of {{ .total }}</a>
+            {{- else }}{{ with .Params.categories }}
             <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-tag">{{ index . 0 }}</a>
-            {{ end }}
+            {{- end }}{{ end }}
             <h1 class="post-title">{{ .Title }}</h1>
             {{ with .Description }}<p class="post-dek">{{ . }}</p>{{ end }}
             <div class="post-meta-info">
@@ -20,6 +23,7 @@
                 <span class="post-updated">updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></span>
                 {{- end }}
                 <span>{{ .ReadingTime }} min read</span>
+                {{- partial "tested.html" . }}
             </div>
         </header>
 
@@ -43,6 +47,23 @@
             {{ end }}
         </div>
         {{ end }}
+
+        {{- with $series }}
+        {{- with .next }}
+        <a class="series-next" href="{{ .RelPermalink }}">
+            <span class="series-next-label">Next in {{ $series.page.Title }} · {{ add $series.pos 1 }} of {{ $series.total }}</span>
+            <strong>{{ .Title }}</strong>
+            <span class="series-next-meta">{{ .ReadingTime }} min read</span>
+        </a>
+        {{- else }}
+        <a class="series-next is-done" href="{{ $series.page.RelPermalink }}">
+            <span class="series-next-label">You've finished {{ $series.page.Title }}</span>
+            <strong>See all {{ $series.total }} posts in this path</strong>
+        </a>
+        {{- end }}
+        {{- end }}
+
+        {{ partial "author-card.html" . }}
 
         <div class="post-footer-actions">
             <div class="social-share">

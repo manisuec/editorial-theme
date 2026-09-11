@@ -1,0 +1,16 @@
+{{- /* Returns the post's reading path (the first `series` value) as a dict:
+       page (the path's page), total, pos (1-based), next (next post or false). Returns false if none. */ -}}
+{{- $out := false -}}
+{{- with .Params.series -}}
+  {{- with index site.Taxonomies.series (index . 0 | urlize) -}}
+    {{- $pages := .Pages -}}
+    {{- $pos := 0 -}}
+    {{- range $i, $p := $pages -}}
+      {{- if eq $p.RelPermalink $.RelPermalink }}{{ $pos = add $i 1 }}{{ end -}}
+    {{- end -}}
+    {{- $next := false -}}
+    {{- if and $pos (lt $pos (len $pages)) }}{{ $next = index $pages $pos }}{{ end -}}
+    {{- if $pos }}{{ $out = dict "page" .Page "total" (len $pages) "pos" $pos "next" $next }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

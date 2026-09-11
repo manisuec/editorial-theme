@@ -1,0 +1,7 @@
+{{- /* Optional "tested with" stamp in the post meta line. Frontmatter:
+       tested:
+         node: "24.x"
+         pino: "9.x" */ -}}
+{{- with .Params.tested }}
+<span class="post-tested">tested with{{ range $name, $version := . }} <b>{{ $name }}</b> {{ $version }}{{ end }}</span>
+{{- end }}
