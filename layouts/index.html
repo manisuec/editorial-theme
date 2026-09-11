@@ -2,14 +2,16 @@
 {{- $posts := where (where site.RegularPages "Section" "post") "Date" "gt" (time "1970-01-01") }}
 
 <section class="home-intro">
-    <div class="container home-intro-grid">
-        <div>
+    {{- /* Two aligned rows on wide screens: headline beside the image, buttons beside the counts */}}
+    <div class="container home-intro-grid{{ if not site.Params.heroImage }} no-hero{{ end }}">
+        <div class="home-intro-text">
             <p class="home-who">{{ site.Params.author }}{{ with site.Params.bio }} · {{ . }}{{ end }}</p>
             <h1 class="home-title">{{ site.Params.heroTitle | default site.Title }}</h1>
             {{- with site.Params.heroSubtitle }}
             <p class="home-sub">{{ . }}</p>
             {{- end }}
-            <div class="home-cta">
+        </div>
+        <div class="home-cta">
                 {{- if site.Taxonomies.series }}
                 <a class="hero-cta" href="#paths">Start with a reading path</a>
                 {{- else }}
@@ -18,17 +20,23 @@
                 {{- if site.Params.mailerlite.enable }}
                 <a class="hero-cta hero-cta-secondary" href="#subscribe">Get new posts by email</a>
                 {{- end }}
-            </div>
         </div>
-        {{- with $posts }}
-        <dl class="home-facts">
-            <div><dt>Articles</dt><dd>{{ len . }}</dd></div>
-            <div><dt>Writing since</dt><dd>{{ (index .ByDate 0).Date.Year }}</dd></div>
-            {{- range first 2 site.Taxonomies.categories.ByCount }}
-            <div><dt>{{ .Page.LinkTitle }}</dt><dd>{{ .Count }}</dd></div>
+            {{- /* Hero image (params.heroImage); it is the largest thing above the fold, so it loads with high priority */}}
+            {{- with site.Params.heroImage }}
+            {{- $src := . }}{{ if not (hasPrefix . "http") }}{{ $src = . | relURL }}{{ end }}
+            <img class="home-hero" src="{{ $src }}" alt="{{ site.Params.heroImageAlt | default "" }}"
+                 width="{{ site.Params.heroImageWidth | default 600 }}" height="{{ site.Params.heroImageHeight | default 500 }}"
+                 fetchpriority="high" decoding="async">
             {{- end }}
-        </dl>
-        {{- end }}
+            {{- with $posts }}
+            <dl class="home-facts">
+                <div><dt>Articles</dt><dd>{{ len . }}</dd></div>
+                <div><dt>Writing since</dt><dd>{{ (index .ByDate 0).Date.Year }}</dd></div>
+                {{- range first 2 site.Taxonomies.categories.ByCount }}
+                <div><dt>{{ .Page.LinkTitle }}</dt><dd>{{ .Count }}</dd></div>
+                {{- end }}
+            </dl>
+            {{- end }}
     </div>
 </section>
 
