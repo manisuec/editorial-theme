@@ -1,84 +1,31 @@
-{{- $image := "" -}}
-{{- with .Params.titleImage -}}
-  {{- $image = . | absURL -}}
-{{- else -}}
-  {{- with .Params.image -}}
-    {{- $image = . | absURL -}}
-  {{- end -}}
-{{- end -}}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ .Permalink }}"
-  },
-  "headline": "{{ .Title }}",
-  {{- with .Params.description }}
-  "description": "{{ . }}",
-  {{- end }}
-  {{- with $image }}
-  "image": {
-    "@type": "ImageObject",
-    "url": "{{ . }}"
-  },
-  {{- end }}
-  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
-  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
-  {{- with .Site.Params.author }}
-  "author": {
-    "@type": "Person",
-    "name": "{{ $.Site.Params.author  }}"
-    {{- with $.Site.Params.avatar }},
-    "image": "{{ . | absURL }}"
-    {{- end }}
-    {{- with $.Site.Params.bio }},
-    "bio": "{{ . }}"
-    {{- end }}
-    {{- with $.Site.Params.url }},
-    "url": "{{ . }}"
-    {{- end }}
-    {{- $socials := slice -}}
-    {{- with $.Site.Params.social -}}
-      {{- range $name, $url := . -}}
-        {{- if and $url (ne $url "#") (not (hasPrefix $url "mailto:")) -}}
-          {{- $socials = $socials | append $url -}}
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}
-    {{- if $socials }},
-    "sameAs": {{ $socials | jsonify | safeJS }}
-    {{- end }}
-  },
-  {{- else }}
-  "author": {
-    "@type": "Organization",
-    "name": "{{ $.Site.Title }}"
-  },
-  {{- end }}
-  "publisher": {
-    "@type": "Organization",
-    "name": "{{ .Site.Title }}",
-    {{- with .Site.Params.logo }}
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ . | absURL }}"
-    },
-    {{- end }}
-    "@id": "{{ .Site.BaseURL }}#organization"
-  },
-  {{- with .Params.categories }}
-  "articleSection": "{{ index . 0 }}",
-  {{- end }}
-  {{- with .Params.tags }}
-  "keywords": "{{ delimit . ", " }}",
-  {{- end }}
-  "wordCount": {{ .WordCount }},
-  "timeRequired": "PT{{ .ReadingTime }}M",
-  "inLanguage": "{{ .Site.LanguageCode | default "en-US" }}",
-  "isPartOf": {
-    "@id": "{{ .Site.BaseURL }}#website"
-  }
-}
-</script>
+{{- /* Posts: BlogPosting authored and published by the site author (full Person entity on /about/).
+       Image follows the same order as opengraph.html: images[0], thumbnail, then the site default. */ -}}
+{{- $person := partialCached "schema/person-node.html" . -}}
+{{- $author := dict
+  "@type" "Person"
+  "@id" (index $person "@id")
+  "name" (index $person "name")
+  "url" (index $person "url")
+-}}
+{{- $img := site.Params.socialImage -}}
+{{- with .Params.images }}{{ $img = index . 0 }}{{ else }}{{ with .Params.thumbnail }}{{ $img = . }}{{ end }}{{ end -}}
+{{- if not (hasPrefix $img "http") }}{{ $img = $img | absURL }}{{ end -}}
+{{- $s := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "@id" (printf "%s#article" .Permalink)
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "headline" (.Title | plainify | truncate 110 | htmlUnescape)
+  "description" (.Description | default .Summary | plainify | htmlUnescape)
+  "image" (slice $img)
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "author" $author
+  "publisher" $author
+  "isPartOf" (dict "@id" (printf "%s#website" site.BaseURL))
+  "inLanguage" (site.LanguageCode | default "en")
+  "wordCount" .WordCount
+-}}
+{{- with .Params.categories }}{{ $s = merge $s (dict "articleSection" (index . 0)) }}{{ end -}}
+{{- with .Params.tags }}{{ $s = merge $s (dict "keywords" (delimit . ", ")) }}{{ end -}}
+<script type="application/ld+json">{{ $s | jsonify | safeJS }}</script>

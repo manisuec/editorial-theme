@@ -1,0 +1,24 @@
+{{- /* Markdown images: add intrinsic width/height (read at build time) so the
+       layout doesn't shift when the image loads; lazy-load all but the first. */ -}}
+{{- $src := .Destination -}}
+{{- $width := 0 -}}
+{{- $height := 0 -}}
+{{- if hasPrefix $src "http" -}}
+  {{- with try (resources.GetRemote $src) -}}
+    {{- if .Err -}}
+      {{- warnf "render-image: could not fetch %s: %s" $src .Err -}}
+    {{- else -}}
+      {{- with .Value -}}
+        {{- if in (slice "jpeg" "png" "gif" "webp") .MediaType.SubType -}}
+          {{- $width = .Width -}}
+          {{- $height = .Height -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ $src }}" alt="{{ .PlainText }}"
+  {{- with .Title }} title="{{ . }}"{{ end }}
+  {{- if $width }} width="{{ $width }}" height="{{ $height }}"{{ end }}
+  {{- if gt .Ordinal 0 }} loading="lazy"{{ end }} decoding="async">
+{{- /* chomp trailing newline */ -}}
