@@ -84,6 +84,93 @@
         });
     });
 
+    // Table of contents: highlight the section being read and count down the time left
+    var tocLinks = document.querySelectorAll('.post-toc nav a, .toc-mobile nav a');
+    var content = document.querySelector('.post-content');
+    if (tocLinks.length && content) {
+        var byId = {};
+        tocLinks.forEach(function (a) {
+            var id = decodeURIComponent((a.getAttribute('href') || '').slice(1));
+            (byId[id] = byId[id] || []).push(a);
+        });
+        var headings = Array.prototype.filter.call(content.querySelectorAll('h2[id], h3[id]'), function (h) { return byId[h.id]; });
+        var progress = document.querySelector('.toc-progress');
+        var bar = progress && progress.querySelector('.toc-bar i');
+        var left = progress && progress.querySelector('.toc-left');
+        var total = progress ? parseInt(progress.getAttribute('data-reading-time'), 10) || 0 : 0;
+        var activeId = null;
+        var ticking = false;
+
+        var update = function () {
+            ticking = false;
+            var current = null;
+            for (var i = 0; i < headings.length; i++) {
+                if (headings[i].getBoundingClientRect().top <= 120) current = headings[i].id; else break;
+            }
+            if (current !== activeId) {
+                activeId = current;
+                tocLinks.forEach(function (a) { a.classList.remove('is-active'); a.removeAttribute('aria-current'); });
+                (byId[current] || []).forEach(function (a) { a.classList.add('is-active'); a.setAttribute('aria-current', 'location'); });
+            }
+            if (bar && left) {
+                var rect = content.getBoundingClientRect();
+                var f = Math.min(1, Math.max(0, (window.innerHeight * 0.3 - rect.top) / rect.height));
+                bar.style.width = (f * 100).toFixed(1) + '%';
+                var mins = Math.max(1, Math.ceil(total * (1 - f)));
+                left.textContent = f <= 0 ? total + ' min read' : (f >= 0.98 ? 'Done reading' : mins + ' min left');
+            }
+        };
+        window.addEventListener('scroll', function () {
+            if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }, { passive: true });
+        update();
+
+        // collapse the drop-down after a section is picked
+        document.querySelectorAll('.toc-mobile nav a').forEach(function (a) {
+            a.addEventListener('click', function () { var d = a.closest('details'); if (d) d.open = false; });
+        });
+    }
+
+    // Archive filters: topic chips and a title filter; ?topic=<name> preselects a topic
+    var controls = document.getElementById('archive-controls');
+    if (controls) {
+        controls.hidden = false;
+        var filterInput = document.getElementById('archive-filter');
+        var chips = controls.querySelectorAll('.chip');
+        var rows = document.querySelectorAll('.post-row');
+        var groups = document.querySelectorAll('.year-group');
+        var empty = document.getElementById('archive-empty');
+        var topic = '';
+        var apply = function () {
+            var q = filterInput.value.trim().toLowerCase();
+            var shown = 0;
+            rows.forEach(function (r) {
+                var ok = (!topic || r.getAttribute('data-cat') === topic) &&
+                    (!q || r.querySelector('.post-row-title').textContent.toLowerCase().indexOf(q) !== -1);
+                r.hidden = !ok;
+            });
+            groups.forEach(function (g) {
+                var n = g.querySelectorAll('.post-row:not([hidden])').length;
+                g.hidden = n === 0;
+                shown += n;
+                var c = g.querySelector('.year-count');
+                if (c) c.textContent = n + (n === 1 ? ' post' : ' posts');
+            });
+            empty.hidden = shown !== 0;
+        };
+        var select = function (chip) {
+            topic = chip.getAttribute('data-cat');
+            chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+            apply();
+        };
+        chips.forEach(function (c) { c.addEventListener('click', function () { select(c); }); });
+        filterInput.addEventListener('input', apply);
+        var wanted = new URLSearchParams(window.location.search).get('topic');
+        if (wanted) {
+            chips.forEach(function (c) { if (c.getAttribute('data-cat') === wanted) select(c); });
+        }
+    }
+
     // Mobile menu
     var menuToggle = document.getElementById('menuToggle');
     var navMenu = document.getElementById('navMenu');

@@ -1,7 +1,12 @@
 {{ define "main" }}
 
+{{- /* Table of contents for posts with at least 3 sections: left margin on wide screens, a drop-down otherwise */}}
+{{- $h2 := findRE "<h2" .Content }}
+{{- $toc := "" }}
+{{- if ge (len $h2) 3 }}{{ $toc = .TableOfContents | replaceRE ` id="TableOfContents"` "" | safeHTML }}{{ end }}
 <article class="post">
-    <div class="container">
+    <div class="container post-layout">
+        <div class="post-body">
         <header class="post-header">
             {{ with .Params.categories }}
             <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-tag">{{ index . 0 }}</a>
@@ -19,6 +24,13 @@
         </header>
 
         {{ partial "tldr.html" . }}
+
+        {{- with $toc }}
+        <details class="toc-mobile">
+            <summary>On this page <span>{{ len $h2 }} sections</span></summary>
+            {{ . }}
+        </details>
+        {{- end }}
 
         <div class="post-content">
             {{ .Content }}
@@ -61,6 +73,16 @@
             </div>
         </div>
         </div>
+        {{- with $toc }}
+        <aside class="post-toc" aria-label="On this page">
+            <p class="toc-title">On this page</p>
+            {{ . }}
+            <p class="toc-progress" data-reading-time="{{ $.ReadingTime }}">
+                <span class="toc-bar" aria-hidden="true"><i></i></span>
+                <span class="toc-left">{{ $.ReadingTime }} min read</span>
+            </p>
+        </aside>
+        {{- end }}
     </div>
 </article>
 
@@ -93,12 +115,13 @@
 {{ end }}
 
 {{ if eq .Section "post" }}
-{{ $related := first 6 ((where .Site.RegularPages "Section" "post") | shuffle) }}{{ $related = $related | complement (slice .) }}
+{{- /* Posts that share tags and category with this one (see [related] in config.toml) */}}
+{{ $related := first 3 (.Site.RegularPages.Related .) }}
 {{ if gt (len $related) 0 }}
 <section class="related-posts" aria-label="Related articles">
     <div class="container">
         <div class="related-posts-header">
-            <div class="section-label">You might also enjoy</div>
+            <div class="section-label">Related articles</div>
         </div>
         <div class="related-posts-grid">
             {{ range first 6 $related }}

@@ -1,0 +1,19 @@
+{{- /* Compact article rows grouped by year: the archive, category and tag pages.
+       Usage: partial "post-rows.html" (dict "pages" .Pages) */ -}}
+{{- /* undated files (no frontmatter) are left out */}}
+{{- range (where .pages "Date" "gt" (time "1970-01-01")).ByDate.Reverse.GroupByDate "2006" }}
+<section class="year-group" aria-labelledby="year-{{ .Key }}">
+    <h2 class="year-heading" id="year-{{ .Key }}">{{ .Key }} <span class="year-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span></h2>
+    <ol class="post-rows">
+        {{- range .Pages }}
+        {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 | urlize }}{{ end }}
+        <li class="post-row" data-cat="{{ $cat }}">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-02" }}</time>
+            <a href="{{ .RelPermalink }}" class="post-row-title">{{ .Title }}</a>
+            <span class="post-row-cat">{{ $cat }}</span>
+            <span class="post-row-min">{{ .ReadingTime }} min</span>
+        </li>
+        {{- end }}
+    </ol>
+</section>
+{{- end }}

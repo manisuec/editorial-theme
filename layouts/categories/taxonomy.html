@@ -1,32 +1,11 @@
 {{ define "main" }}
-{{ $articleCount := .Paginator.TotalNumberOfElements }}
-<div class="container">
-    <section class="post-header">
+<div class="container archive">
+    <header class="post-header archive-header">
+        <p class="section-label"><a href="{{ "categories/" | relURL }}">Topics</a></p>
         <h1 class="post-title">{{ .Title }}</h1>
-        <p class="hero-subtitle" style="margin-top: 1rem;">
-            {{ $articleCount }} {{ if eq $articleCount 1 }}article{{ else }}articles{{ end }}
-        </p>
-    </section>
+        <p class="hero-subtitle">{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</p>
+    </header>
 
-    <section class="featured">
-        <div class="featured-content">
-            {{ range .Paginator.Pages }}
-            <a href="{{ .Permalink }}" class="article-card">
-                {{ with .Params.categories }}
-                <span class="article-tag">{{ index . 0 }}</span>
-                {{ end }}
-                <h3>{{ .Title }}</h3>
-                <p class="article-excerpt">
-                    {{ .Summary | truncate 150 }}
-                </p>
-                <div class="article-meta">
-                    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-                    <span class="read-time">{{ .ReadingTime }} min read</span>
-                </div>
-            </a>
-            {{ end }}
-        </div>
-        {{ partial "pagination.html" . }}
-    </section>
+    {{ partial "post-rows.html" (dict "pages" .Pages) }}
 </div>
 {{ end }}

@@ -1,23 +1,27 @@
 {{ define "main" }}
-<div class="container">
-    <section class="post-header">
-        <h1 class="post-title">{{ .Title }}</h1>
-        {{ if .Content }}
-        <div class="post-content">
-            {{ .Content }}
-        </div>
-        {{ end }}
-    </section>
+{{- $pages := where .RegularPages "Date" "gt" (time "1970-01-01") }}
+<div class="container archive">
+    <header class="post-header archive-header">
+        <h1 class="post-title">Archive</h1>
+        {{- with $pages }}
+        <p class="hero-subtitle">{{ len . }} articles · {{ (index .ByDate 0).Date.Year }}–{{ (index .ByDate.Reverse 0).Date.Year }}</p>
+        {{- end }}
+        {{- with .Content }}<div class="post-content">{{ . }}</div>{{ end }}
+    </header>
 
-    <section class="featured">
-        <div class="section-label">All Articles</div>
-        <div class="featured-content">
-            {{ range .Paginator.Pages }}
-            {{ partial "article-card.html" (dict "page" . "showExcerpt" true) }}
-            {{ end }}
+    {{- /* Filters are revealed by site.js, so visitors without JavaScript don't see dead controls */}}
+    <div class="archive-controls" id="archive-controls" hidden>
+        <label class="visually-hidden" for="archive-filter">Filter articles by title</label>
+        <input type="search" id="archive-filter" class="archive-filter" placeholder="Filter by title…" autocomplete="off">
+        <div class="chips" role="group" aria-label="Filter by topic">
+            <button type="button" class="chip" data-cat="" aria-pressed="true">All <span>{{ len $pages }}</span></button>
+            {{- range .Site.Taxonomies.categories.ByCount }}
+            <button type="button" class="chip" data-cat="{{ .Name }}" aria-pressed="false">{{ .Page.LinkTitle }} <span>{{ .Count }}</span></button>
+            {{- end }}
         </div>
-    </section>
+        <p class="archive-empty" id="archive-empty" role="status" hidden>No articles match. Try a shorter phrase or another topic.</p>
+    </div>
 
-    {{ partial "pagination.html" . }}
+    {{ partial "post-rows.html" (dict "pages" $pages) }}
 </div>
 {{ end }}

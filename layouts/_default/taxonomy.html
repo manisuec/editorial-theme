@@ -1,20 +1,11 @@
 {{ define "main" }}
-{{ $articleCount := .Paginator.TotalNumberOfElements }}
-<div class="container">
-    <section class="post-header">
-        <h1 class="post-title">{{ .Title }}</h1>
-        <p class="hero-subtitle" style="margin-top: 1rem;">
-            {{ $articleCount }} {{ if eq $articleCount 1 }}article{{ else }}articles{{ end }}
-        </p>
-    </section>
+<div class="container archive">
+    <header class="post-header archive-header">
+        <p class="section-label"><a href="{{ printf "%s/" .Data.Plural | relURL }}">{{ .Data.Plural | humanize }}</a></p>
+        <h1 class="post-title">{{ if eq .Data.Plural "tags" }}#{{ end }}{{ .Title }}</h1>
+        <p class="hero-subtitle">{{ len .Pages }} {{ if eq (len .Pages) 1 }}article{{ else }}articles{{ end }}</p>
+    </header>
 
-    <section class="featured">
-        <div class="featured-content">
-            {{ range .Paginator.Pages }}
-            {{ partial "article-card.html" (dict "page" . "showExcerpt" true) }}
-            {{ end }}
-        </div>
-        {{ partial "pagination.html" . }}
-    </section>
+    {{ partial "post-rows.html" (dict "pages" .Pages) }}
 </div>
 {{ end }}
