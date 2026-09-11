@@ -20,7 +20,7 @@
                 <div class="topic-name">{{ .title }}</div>
                 {{ if (index $taxonomy $url) }}
                 {{ $count := (index $taxonomy $url).Count }}
-                <div class="article-count" style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                <div class="article-count">
                     {{ $count }} {{ if eq $count 1 }}article{{ else }}articles{{ end }}
                 </div>
                 {{ end }}

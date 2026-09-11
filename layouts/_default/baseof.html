@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    // Apply a stored theme choice before first paint; without one the CSS follows the OS setting.
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    </script>
     <title>
       {{ if .IsHome }}
         {{ .Site.Title }}
@@ -52,13 +56,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
     <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
-    <meta name="theme-color" content="#E63946">
+    <meta name="theme-color" content="#F6F7F5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0F1214" media="(prefers-color-scheme: dark)">
 
-    <!-- Fonts: self-hosted (static/fonts, @font-face in style.css); preload the latin subsets so they arrive alongside the CSS -->
-    <link rel="preload" href="{{ "fonts/outfit-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ "fonts/fraunces-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <!-- Fonts: self-hosted (static/fonts, @font-face in main.css); preload the latin subsets of the UI and reading faces -->
+    <link rel="preload" href="{{ "fonts/geist-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "fonts/literata-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
     <!-- {{ if .IsHome }}
     <script type="application/ld+json">
     {
@@ -86,7 +92,8 @@
     // Load ads and analytics once the page has rendered so they don't compete with first paint.
     (function () {
         var scripts = [
-            {{- if .Site.Params.googleAdsense.enable }}
+            {{- /* Ads run on articles only: one slot after the article (single.html) */}}
+            {{- if and .Site.Params.googleAdsense.enable (eq .Kind "page") (eq .Section "post") }}
             { src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAdsense.clientId }}', crossOrigin: 'anonymous' },
             {{- end }}
             {{- with .Site.Params.googleAnalytics }}
@@ -146,6 +153,7 @@
     {{ partial "footer.html" . }}
 
     <script src="{{ "js/search.js" | relURL }}" defer></script>
+    <script src="{{ "js/site.js" | relURL }}" defer></script>
 
     {{ if eq .Kind "page" }}
     <script>

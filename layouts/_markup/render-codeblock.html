@@ -1,0 +1,12 @@
+{{- /* Fenced code blocks: filename tab (```js {title="logger.js"}), language label and copy button.
+       Mermaid blocks use render-codeblock-mermaid.html instead. */ -}}
+{{- $result := transform.HighlightCodeBlock . -}}
+<figure class="code-block">
+  <figcaption class="code-block-bar">
+    {{- with .Attributes.title }}<span class="code-block-title">{{ . }}</span>{{ end }}
+    {{- with .Type }}<span class="code-block-lang">{{ . }}</span>{{ end }}
+    <button type="button" class="code-copy"{{ if not .Type }} style="margin-left:auto"{{ end }}>Copy</button>
+  </figcaption>
+  {{ $result.Wrapped }}
+</figure>
+{{- /* chomp trailing newline */ -}}

@@ -43,7 +43,7 @@
 
             <div class="featured-content">
                 {{ range first 3 (.Site.RegularPages.ByDate.Reverse) }}
-                {{ partial "article-card.html" (dict "page" . "showShare" true "showExcerpt" true) }}
+                {{ partial "article-card.html" (dict "page" . "showExcerpt" true) }}
                 {{ end }}
             </div>
         </div>

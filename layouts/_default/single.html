@@ -1,28 +1,22 @@
 {{ define "main" }}
 
-<article>
+<article class="post">
     <div class="container">
-        <div class="post-header">
-            <div class="post-header-top">
-                {{ with .Params.categories }}
-                <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-tag">{{ index . 0 }}</a>
-                {{ end }}
-                <div class="share-icons-header">
-                    {{ partial "share-icons.html" . }}
-                </div>
-            </div>
-            <h1 class="post-title">{{ .Title }}</h1>
-            <div class="post-meta-info">
-                <span>{{ .Date.Format "January 2, 2006" }}</span>
-                <span>•</span>
-                <span>{{ .ReadingTime }} min read</span>
-                {{ $author := .Params.author | default .Site.Params.author }}
-            {{ with $author }}
-                <span>•</span>
-                <span>By {{ . }}</span>
+        <header class="post-header">
+            {{ with .Params.categories }}
+            <a href="{{ "categories/" | relURL }}{{ index . 0 | urlize }}/" class="article-tag">{{ index . 0 }}</a>
             {{ end }}
+            <h1 class="post-title">{{ .Title }}</h1>
+            {{ with .Description }}<p class="post-dek">{{ . }}</p>{{ end }}
+            <div class="post-meta-info">
+                <span>by {{ .Params.author | default .Site.Params.author }}</span>
+                <span>published <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></span>
+                {{- if gt (.Lastmod.Sub .Date).Hours 24.0 }}
+                <span class="post-updated">updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time></span>
+                {{- end }}
+                <span>{{ .ReadingTime }} min read</span>
             </div>
-        </div>
+        </header>
 
         {{ partial "tldr.html" . }}
 
@@ -69,6 +63,18 @@
         </div>
     </div>
 </article>
+
+{{- /* The single ad slot: after the article, before further reading. Needs an ad unit ID in
+       params.googleAdsense.articleSlot; turn Auto ads off in AdSense so no other ads are injected. */}}
+{{- if eq .Section "post" }}
+{{- with .Site.Params.googleAdsense }}{{ if and .enable .articleSlot }}
+<aside class="ad-slot container" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="{{ .clientId }}" data-ad-slot="{{ .articleSlot }}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+</aside>
+{{- end }}{{ end }}
+{{- end }}
 
 {{ if or .NextInSection .PrevInSection }}
 <section class="featured" aria-label="More articles">
