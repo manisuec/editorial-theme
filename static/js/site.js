@@ -171,6 +171,46 @@
         }
     }
 
+    // Avatar lightbox: clicking the homepage avatar shows a larger copy.
+    // The overlay is built on first use, so pages without an avatar cost nothing.
+    var avatar = document.querySelector('.home-avatar');
+    if (avatar) {
+        var zoom = null;
+        var lastFocus = null;
+        var closeZoom = function () {
+            if (!zoom || !zoom.classList.contains('is-open')) return;
+            zoom.classList.remove('is-open');
+            zoom.hidden = true;
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
+        };
+        var openZoom = function () {
+            if (!zoom) {
+                zoom = document.createElement('div');
+                zoom.className = 'avatar-zoom';
+                zoom.hidden = true;
+                var backdrop = document.createElement('div');
+                backdrop.className = 'avatar-zoom-backdrop';
+                var big = document.createElement('img');
+                big.src = avatar.getAttribute('data-large') || avatar.src;
+                big.alt = avatar.alt;
+                zoom.appendChild(backdrop);
+                zoom.appendChild(big);
+                zoom.addEventListener('click', closeZoom);
+                document.body.appendChild(zoom);
+            }
+            lastFocus = document.activeElement;
+            zoom.hidden = false;
+            zoom.classList.add('is-open');
+        };
+        avatar.addEventListener('click', function (e) {
+            e.preventDefault();
+            openZoom();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeZoom();
+        });
+    }
+
     // Mobile menu
     var menuToggle = document.getElementById('menuToggle');
     var navMenu = document.getElementById('navMenu');
