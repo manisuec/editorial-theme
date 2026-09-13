@@ -1,6 +1,6 @@
 <header class="site-header" role="banner">
     <div class="container header-inner">
-        <a href="{{ "/" | relURL }}" class="logo" aria-label="{{ .Site.Title }}: home"><span class="logo-mark" aria-hidden="true"></span>techinsights</a>
+        <a href="{{ "/" | relURL }}" class="logo" aria-label="{{ .Site.Title }}: home"><svg class="logo-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Tech Insights</a>
 
         {{- if and .IsPage (eq .Section "post") }}
         <nav class="crumbs" aria-label="Breadcrumb">
@@ -27,7 +27,7 @@
             <button type="button" class="nav-search-trigger" data-search-open aria-haspopup="dialog" aria-controls="search-modal" aria-label="Search articles">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
                 <span class="nav-search-label">Search</span>
-                <kbd data-kbd>⌘K</kbd>
+                <!-- <kbd data-kbd>⌘K</kbd> -->
             </button>
             <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch theme">
                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>

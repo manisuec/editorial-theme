@@ -5,7 +5,17 @@
     {{- /* Two aligned rows on wide screens: headline beside the image, buttons beside the counts */}}
     <div class="container home-intro-grid{{ if not site.Params.heroImage }} no-hero{{ end }}">
         <div class="home-intro-text">
-            <p class="home-who">{{ site.Params.author }}{{ with site.Params.bio }} · {{ . }}{{ end }}</p>
+            <p class="home-who">
+                {{- with site.Params.avatar }}
+                {{- $src := . }}{{ if not (hasPrefix . "http") }}{{ $src = . | relURL }}{{ end }}
+                {{- /* data-large is what the double-click lightbox shows; falls back to the avatar itself */}}
+                {{- $large := site.Params.avatarLarge | default . }}
+                {{- if not (hasPrefix $large "http") }}{{ $large = $large | relURL }}{{ end }}
+                <img class="home-avatar" src="{{ $src }}" data-large="{{ $large }}" alt="{{ site.Params.author }}"
+                     width="32" height="32" decoding="async" title="Click to enlarge">
+                {{- end }}
+                <span>{{ site.Params.author }}{{ with site.Params.bio }} · {{ . }}{{ end }}</span>
+            </p>
             <h1 class="home-title">{{ site.Params.heroTitle | default site.Title }}</h1>
             {{- with site.Params.heroSubtitle }}
             <p class="home-sub">{{ . }}</p>
@@ -45,7 +55,8 @@
     <div class="container">
         <div class="home-label"><h2>Reading paths</h2><a href="{{ "series/" | relURL }}">All paths →</a></div>
         <div class="paths">
-            {{- range .ByCount }}
+            {{- /* Homepage shows only the four largest paths; the rest are on /series/ */}}
+            {{- range first 4 .ByCount }}
             {{- $pages := .Pages }}
             {{- $mins := 0 }}{{ range $pages }}{{ $mins = add $mins .ReadingTime }}{{ end }}
             <a class="path" href="{{ .Page.RelPermalink }}">

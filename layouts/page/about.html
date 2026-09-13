@@ -3,6 +3,12 @@
     <div class="container">
         <!-- Hero Section -->
         <div class="about-hero">
+            {{- /* Portrait sits beside the title and tagline at every width.
+                   Uses params.avatar, so the homepage and this page stay in sync. */}}
+            {{- with .Site.Params.avatar }}
+            {{- $src := . }}{{ if not (hasPrefix . "http") }}{{ $src = . | relURL }}{{ end }}
+            <img class="about-portrait" src="{{ $src }}" alt="{{ site.Params.author }}" width="120" height="120" decoding="async">
+            {{- end }}
             <div class="about-hero-content">
                 <h1 class="about-title">{{ .Title }}</h1>
                 <p class="about-tagline">{{ .Site.Params.description }}</p>

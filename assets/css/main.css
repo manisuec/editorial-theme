@@ -194,7 +194,8 @@ kbd { font: 500 11px/1 var(--f-mono); padding: 3px 5px; border: 1px solid var(--
     flex: none;
 }
 .logo:hover { color: var(--ink); }
-.logo-mark { width: 10px; height: 10px; border-radius: 3px; background: var(--accent); display: block; }
+/* Home icon before the wordmark; sized in em so it tracks the logo's font-size */
+.logo-home { width: 1.05em; height: 1.05em; flex: none; display: block; color: var(--accent); }
 .crumbs {
     display: flex;
     align-items: center;
@@ -220,7 +221,7 @@ kbd { font: 500 11px/1 var(--f-mono); padding: 3px 5px; border: 1px solid var(--
     align-items: center;
     gap: .55rem;
     height: 34px;
-    padding: 0 .4rem 0 .7rem;
+    padding: 0 .5rem 0 .7rem;
     border: 1px solid var(--rule-strong);
     border-radius: 8px;
     background: var(--surface);
@@ -263,7 +264,7 @@ kbd { font: 500 11px/1 var(--f-mono); padding: 3px 5px; border: 1px solid var(--
     .header-inner { gap: .75rem; }
     .site-nav { margin-left: auto; }
     .nav-search-trigger { width: 34px; padding: 0; justify-content: center; }
-    .nav-search-trigger .nav-search-label, .nav-search-trigger kbd { display: none; }
+    .nav-search-trigger .nav-search-label, .nav-search-trigger kbd { display: none;}
     .mobile-menu-toggle { display: inline-grid; }
     .nav-menu {
         display: none;
@@ -333,7 +334,17 @@ kbd { font: 500 11px/1 var(--f-mono); padding: 3px 5px; border: 1px solid var(--
 }
 .home-intro-grid.no-hero { grid-template-areas: "text facts" "cta facts"; }
 .home-intro-text { grid-area: text; }
-.home-who { font: 500 13px/1.4 var(--f-mono); color: var(--accent); margin-bottom: 1rem; }
+.home-who { font: 500 13px/1.4 var(--f-mono); color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .55rem; }
+.home-avatar { width: 32px; height: 32px; flex: none; border-radius: 4px; object-fit: cover; cursor: zoom-in; -webkit-user-select: none; user-select: none; }
+/* Larger view of the avatar, opened by clicking it (js/site.js) */
+.avatar-zoom { display: none; position: fixed; inset: 0; z-index: var(--z-overlay); align-items: center; justify-content: center; padding: 1.5rem; }
+.avatar-zoom.is-open { display: flex; }
+.avatar-zoom-backdrop { position: absolute; inset: 0; background: var(--backdrop); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+/* max-width, not width: the image renders at its native size (never upscaled and soft)
+   and only shrinks on narrow screens, so a higher-res avatarLarge automatically shows bigger */
+.avatar-zoom img { position: relative; display: block; max-width: min(320px, 78vw); height: auto; border-radius: var(--radius-lg); border: 1px solid var(--rule-strong); box-shadow: var(--shadow-lg); background: var(--surface); cursor: zoom-out; }
+@media (prefers-reduced-motion: no-preference) { .avatar-zoom.is-open img { animation: avatar-zoom-in .16s ease-out; } }
+@keyframes avatar-zoom-in { from { transform: scale(.92); opacity: 0; } to { transform: none; opacity: 1; } }
 .home-title { font: 700 clamp(2rem, 4.6vw, 3.1rem)/1.08 var(--f-ui); letter-spacing: -.035em; max-width: 20ch; }
 .home-sub { font-family: var(--f-read); font-size: clamp(1.05rem, 1.8vw, 1.2rem); line-height: 1.6; color: var(--ink-2); margin-top: 1.1rem; max-width: 52ch; }
 /* buttons line up with the first row of counts (which sits .9rem below its top rule) */
@@ -702,8 +713,14 @@ pre.mermaid.mermaid-pending:not([data-processed="true"]) { visibility: hidden; m
 
 /* ==================== About ==================== */
 .about-page > .container { max-width: calc(var(--measure) + 2 * var(--gutter)); }
-.about-hero { padding-block: clamp(2rem, 5vw, 3.25rem) 1.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; }
-.about-hero-content { display: grid; gap: .75rem; }
+/* Portrait on one row with the title and tagline beside it, at every width */
+.about-hero { padding-block: clamp(2rem, 5vw, 3.25rem) 1.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; gap: clamp(.9rem, 3vw, 1.5rem); }
+.about-hero-content { display: grid; gap: .75rem; min-width: 0; }
+/* 120px against a 240px source keeps it sharp on retina */
+.about-portrait { width: 120px; height: 120px; flex: none; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--rule); background: var(--surface); }
+/* Phones keep the same two columns, portrait still centred against the text;
+   only the portrait shrinks, to leave the title and tagline room to wrap */
+@media (max-width: 720px) { .about-portrait { width: 120px; height: 120px; } }
 .about-title { font: 700 clamp(1.9rem, 4.6vw, 2.55rem)/1.1 var(--f-ui); letter-spacing: -.03em; }
 .about-tagline { font-family: var(--f-read); font-size: 1.15rem; line-height: 1.5; color: var(--muted); }
 .about-social { margin-top: 2.75rem; padding-top: 1.75rem; border-top: 1px solid var(--rule); display: grid; gap: 1rem; }
