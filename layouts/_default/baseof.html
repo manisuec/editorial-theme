@@ -88,19 +88,24 @@
         gtag('config', '{{ . }}');
     </script>
     {{- end }}
-    <script>
+    {{- $adsSrc := "" }}
+    {{- /* Ads run on articles only: one slot after the article (single.html) */}}
+    {{- if and .Site.Params.googleAdsense.enable (eq .Kind "page") (eq .Section "post") }}
+    {{- $adsSrc = printf "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=%s" .Site.Params.googleAdsense.clientId }}
+    {{- end }}
+    {{- $gaSrc := "" }}
+    {{- with .Site.Params.googleAnalytics }}
+    {{- $gaSrc = printf "https://www.googletagmanager.com/gtag/js?id=%s" . }}
+    {{- end }}
+    {{- if or $adsSrc $gaSrc }}
+    <script data-ads-src="{{ $adsSrc }}" data-ga-src="{{ $gaSrc }}">
     // Load ads and analytics once the page has rendered so they don't compete with first paint.
+    // URLs come from data attributes so this block stays plain JS (no template tags inside).
     (function () {
-        var scripts = [
-            {{- /* Ads run on articles only: one slot after the article (single.html) */}}
-            {{- if and .Site.Params.googleAdsense.enable (eq .Kind "page") (eq .Section "post") }}
-            { src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .Site.Params.googleAdsense.clientId }}', crossOrigin: 'anonymous' },
-            {{- end }}
-            {{- with .Site.Params.googleAnalytics }}
-            { src: 'https://www.googletagmanager.com/gtag/js?id={{ . }}' },
-            {{- end }}
-        ];
-        if (!scripts.length) return;
+        var d = document.currentScript.dataset;
+        var scripts = [];
+        if (d.adsSrc) scripts.push({ src: d.adsSrc, crossOrigin: 'anonymous' });
+        if (d.gaSrc) scripts.push({ src: d.gaSrc });
         function load() {
             scripts.forEach(function (s) {
                 var el = document.createElement('script');
@@ -118,6 +123,7 @@
         else window.addEventListener('load', schedule, { once: true });
     })();
     </script>
+    {{- end }}
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
